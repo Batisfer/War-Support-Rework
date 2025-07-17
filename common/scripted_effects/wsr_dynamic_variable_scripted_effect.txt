@@ -1,0 +1,203 @@
+﻿#add_war_casualties = {
+#	set_local_variable = {
+#		name = counter
+#		value = 1
+#	}
+#	set_local_variable = { name = free_idx value = 0 }
+#	set_local_variable = { name = matched  value = 0 }
+#	debug_log = start
+#	while = {
+#		limit = { local_var:matched = 0 }
+#
+#		switch = {
+#			trigger = local_var:counter
+#
+#			1 = { check_war_casualties = { num = 1  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			2 = { check_war_casualties = { num = 2  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			3 = { check_war_casualties = { num = 3  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			4 = { check_war_casualties = { num = 4  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			5 = { check_war_casualties = { num = 5  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			6 = { check_war_casualties = { num = 6  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			7 = { check_war_casualties = { num = 7  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			8 = { check_war_casualties = { num = 8  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			9 = { check_war_casualties = { num = 9  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			10 = { check_war_casualties = { num = 10  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			11 = { set_local_variable = { name = matched value = 2 } }
+#		}		
+#		change_local_variable = {
+#			name = counter
+#			add = 1
+#		}
+#	}
+#
+#	if = {
+#		limit = {
+#			AND = {
+#				local_var:free_idx > 0
+#				local_var:matched = 2
+#			}
+#		}
+#
+#		switch = {
+#			trigger = local_var:free_idx
+#			1 = { check_war_casualties = { num = 1  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			2 = { check_war_casualties = { num = 2  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			3 = { check_war_casualties = { num = 3  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			4 = { check_war_casualties = { num = 4  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			5 = { check_war_casualties = { num = 5  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			6 = { check_war_casualties = { num = 6  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			7 = { check_war_casualties = { num = 7  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			8 = { check_war_casualties = { num = 8  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			9 = { check_war_casualties = { num = 9  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#			10 = { check_war_casualties = { num = 10  country_tag = $country_tag$ casualties = $casualties$ war_tag = $war_tag$ pop_count = $pop_count$ } }
+#		}
+#	}
+#}
+#
+#
+#check_war_casualties = {
+#	if = {
+#		limit = { has_variable = $num$_casualties }
+#		debug_log = "found_variable"
+#		var:$num$_casualties = {
+#			if = {
+#				limit = {
+#					has_variable = is_struct
+#					var:war_tag = $war_tag$
+#				}
+#
+#				debug_log = "found_second_variable"
+#
+#				root = { set_local_variable = { name = matched value = 1} }
+#				set_local_variable = { name = delta value = $casualties$ }
+#
+#				change_local_variable = {
+#					name = delta
+#					subtract = var:last_total
+#				}
+#
+#				set_variable = {
+#					name  = delta
+#					value = local_var:delta
+#				}
+#
+#				set_variable = {
+#					name  = last_total
+#					value = $casualties$
+#				}
+#
+#				set_variable = {
+#					name = last_mobilized
+#					value = var:mobilized
+#				}
+#				
+#				set_variable = {
+#					name = mobilized
+#					value = $pop_count$
+#				}
+#			}
+#		}
+#	}
+#	else = {
+#		if = { limit = { local_var:free_idx = 0 } set_local_variable = { name = free_idx value = $num$ } }
+#		if = { 
+#			limit = { local_var:matched = 2 } 
+#			create_struct = {
+#				struct_scope = war_casualties
+#				struct_type = 1
+#			}
+#
+#			set_variable = { name = $num$_casualties value = scope:war_casualties }
+#			var:$num$_casualties = {
+#				set_variable = {
+#					name = country_tag
+#					value = $country_tag$
+#				}
+#				set_variable = {
+#					name = war_tag 
+#					value = $war_tag$
+#				}
+#				set_variable = {
+#					name  = delta
+#					value = $casualties$
+#				}
+#				set_variable = {
+#					name  = last_total
+#					value = $casualties$
+#				}
+#				set_variable = {
+#					name = mobilized
+#					value = $pop_count$
+#				}
+#				set_variable = {
+#					name = last_mobilized
+#					value = $pop_count$
+#				}
+#			}
+#		}
+#	}
+#}
+#
+#delete_war_casualties = {
+#	if = {
+#		limit = {
+#			var:$num$_casualties ?= $struct$
+#		}
+#		debug_log_scopes = yes
+#		destroy_struct = { struct = var:$num$_casualties } 
+#		set_local_variable = war_casualties_var 
+#		remove_variable = $num$_casualties
+#	}
+#}
+
+manage_war_casualties = {
+	if = { 
+		limit = { has_variable_list = casualties_country_list } 
+		every_in_list = {
+			variable = casualties_country_list
+			limit = {
+				var:country_tag = $country_tag$
+				var:war_tag = $war_tag$
+			}
+
+			set_variable = { name = delta value = $casualties$ }
+			change_variable = { name = delta subtract = var:last_total }
+			set_variable = { name = last_total value = $casualties$ }
+			set_variable = { name = last_mobilized value = var:mobilized }
+			set_variable = { name = mobilized value = $pop_count$ }
+
+			save_scope_as = matched_struct
+		}
+	} 
+	if = {
+		limit = { NOT = { exists = scope:matched_struct } }
+		
+		create_struct = {
+			struct_scope = war_casualties
+			struct_type  = 1
+		}
+
+		scope:war_casualties = {
+			set_variable = { name = country_tag  value = $country_tag$ }
+			set_variable = { name = war_tag value = $war_tag$ }
+			set_variable = { name = last_total value = $casualties$ }
+			set_variable = { name = mobilized value = $pop_count$ }
+			set_variable = { name = last_mobilized value = $pop_count$ }
+			set_variable = { name = delta value = $casualties$ }
+		}
+
+		add_to_variable_list = {
+			name = casualties_country_list
+			target = scope:war_casualties
+		}
+	}	
+}
+
+remove_war_casualties = {
+    every_in_list = {
+        variable = casualties_country_list
+        limit = { var:war_tag = $war_tag$ }
+
+        destroy_struct = { struct = this } 
+    }
+}

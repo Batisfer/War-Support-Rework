@@ -1,0 +1,11 @@
+﻿mobilized_pop = {
+	every_scope_pop = {
+		limit = {
+			OR = {
+				is_pop_type = soldiers
+				is_pop_type = officers
+			}
+		}
+		add = workforce
+	}
+}

@@ -1,0 +1,37 @@
+﻿namespace = check_casualties
+
+check_casualties.1 = {
+	placement = root
+	hidden = yes
+
+	immediate = {
+		every_scope_war = {
+			root = { set_local_variable = { name = cas_temp value = prev.total_casualties } }
+			root = { set_local_variable = { name = pc_temp value = mobilized_pop } }
+			root = { set_local_variable = { name = war_temp value = prev }}
+			root = { set_local_variable = { name = country_temp value = this }}
+			root = { manage_war_casualties = { country_tag = local_var:country_temp war_tag = local_var:war_temp casualties = local_var:cas_temp pop_count = local_var:pc_temp } }	
+		}
+	}
+}
+
+check_casualties.2 = {
+	placement = root
+	hidden = yes
+
+	immediate = {
+		if = { 
+			limit = { has_variable_list = casualties_country_list } 
+			every_in_list = {
+				variable = casualties_country_list
+				limit = {
+					var:country_tag ?= root
+					var:war_tag ?= local_var:current_war
+				}
+				destroy_struct = { struct = this }
+			}	
+		}
+	}
+}
+
+
