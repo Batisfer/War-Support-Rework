@@ -2,25 +2,472 @@
 # scope:war = the war we're evaluating war exhaustion for
 # No randomness is allowed in this script value
 
-war_exhaustion_from_enemy_contested_wargoals = {
-	add = define:NWar|WAR_EXHAUSTION_CONTESTED_ENEMY_WARGOALS
-	multiply = "enemy_contested_wargoals(scope:war)"
-}
+WAR_SUPPORT_ALLY_MAX = -7
+WAR_SUPPORT_ALLY_HIGH = -5
+WAR_SUPPORT_ALLY_MEDIUM = -3
+WAR_SUPPORT_ALLY_LOW = -1
 
-military_size = {
-	add = army_size_including_conscripts
-	add = navy_size
-}
+WAR_SUPPORT_MINIMAL_ADVANCE = 3
+
+WAR_SUPPORT_FROM_ALLIES_MAX = -50
+WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS = 15
+
 
 total_casualties = {
 	value = "num_country_casualties(root)"
+}
+
+war_duration = {
+	root = {
+		if = { 
+			limit = { has_variable_list = casualties_country_list } 
+			every_in_list = {
+				variable = casualties_country_list
+				limit = {
+					var:war_tag ?= scope:war
+					var:country_tag ?= root
+					var:stalemate_duration > 0
+				}
+				save_temporary_scope_as = casualties_struct
+				add = var:stalemate_duration
+				save_temporary_value_as = temp_dur
+				if = { 
+					limit = { scope:temp_dur >= 0.1 } 
+					multiply = scope:temp_dur 
+					multiply = 0.01 
+				}
+				multiply = {
+					value = 1
+					subtract = {
+						value = var:our_occupation_current
+						subtract = var:our_occupation_before
+						divide = WAR_SUPPORT_MINIMAL_ADVANCE
+						min = 0
+						max = 1
+					}
+				}
+			
+				if = { 
+					scope:war = {
+						diplomatic_play = {
+							if = {
+								limit = {
+									OR = {
+										initiator ?= root
+										any_scope_initiator_ally = { this = root }
+									}
+								}
+								multiply = 1.2
+							}
+						}
+					}
+				}
+				scope:casualties_struct = {
+					if = {
+						limit = {
+							var:enemy_wargoal_contest_current = 1
+						}
+						multiply = 1.5
+					}
+				}
+			}
+		}
+	}
+}
+
+
+ally_support = {
+	scope:war.diplomatic_play = {
+		if = { 
+			limit = { initiator_is = root }
+			if = { 
+				limit = { 
+					 root.country_rank = rank_value:great_power
+				} 
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_LOW
+				}
+			}
+			else_if = {
+				limit = { 
+					root.country_rank = rank_value:major_power
+				} 
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_MEDIUM
+				}
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:major_power } add = WAR_SUPPORT_ALLY_LOW
+				}		
+			}
+			else_if = {
+				limit = { 
+					root.country_rank = rank_value:minor_power
+				} 
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_HIGH 
+				}
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:major_power } add = WAR_SUPPORT_ALLY_MEDIUM 	
+				}
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:minor_power } add = WAR_SUPPORT_ALLY_LOW 
+				}		
+			}
+			else_if = {
+				limit = { 
+					root.country_rank < rank_value:minor_power
+				} 
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_MAX 
+				}
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:major_power } add = WAR_SUPPORT_ALLY_HIGH
+				}
+				every_scope_initiator_ally = {
+					limit = { country_rank = rank_value:minor_power } add = WAR_SUPPORT_ALLY_MEDIUM
+				}		
+				every_scope_initiator_ally = {
+					limit = { country_rank >= root.country_rank country_rank < rank_value:minor_power } add = WAR_SUPPORT_ALLY_LOW
+				}		
+			}
+		}
+		else_if = {
+			limit = { target_is = root }
+			if = { 
+				limit = { 
+					root.country_rank = rank_value:great_power 
+				} 
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_LOW
+				}
+			}
+			else_if = {
+				limit = { 
+					root.country_rank = rank_value:major_power
+				} 
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_MEDIUM
+				}
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:major_power } add = WAR_SUPPORT_ALLY_LOW 
+				}		
+			}
+			else_if = {
+				limit = { 
+					root.country_rank = rank_value:minor_power 
+				} 
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_HIGH
+				}
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:major_power } add = WAR_SUPPORT_ALLY_MEDIUM
+				}
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:minor_power } add = WAR_SUPPORT_ALLY_LOW
+				}		
+			}
+			else_if = {
+				limit = { 
+					root.country_rank < rank_value:minor_power
+				} 
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:great_power } add = WAR_SUPPORT_ALLY_MAX
+				}
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:major_power } add = WAR_SUPPORT_ALLY_HIGH		
+				}
+				every_scope_target_ally = {
+					limit = { country_rank = rank_value:minor_power } add = WAR_SUPPORT_ALLY_MEDIUM			
+				}
+				every_scope_target_ally = {
+					limit = { country_rank >= root.country_rank country_rank < rank_value:minor_power } add = WAR_SUPPORT_ALLY_LOW	
+				}		
+			}
+		}
+		else_if = {
+			limit = { any_scope_initiator_ally = { this = root } }
+			if = { 
+				limit = { 
+					root = { country_rank = rank_value:great_power }
+				} 
+				initiator = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_initiator_ally = {
+					limit = { not = { this = root } country_rank = rank_value:great_power }
+					add = WAR_SUPPORT_ALLY_LOW
+				}
+			}
+			else_if = {
+				limit = { 
+					root = { country_rank = rank_value:major_power }
+				} 
+				initiator = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_MEDIUM
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:major_power } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						country_rank = rank_value:great_power 
+						not = { this = root } 
+					} 
+					add = WAR_SUPPORT_ALLY_MEDIUM	
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						country_rank = rank_value:major_power 
+						not = { this = root } 
+					} 
+					add = WAR_SUPPORT_ALLY_LOW
+				}		
+			}
+			else_if = {
+				limit = { 
+					root = { country_rank = rank_value:minor_power }
+				} 
+				initiator = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_HIGH	
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:major_power } 
+						add = WAR_SUPPORT_ALLY_MEDIUM
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:minor_power } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:great_power 
+					} 
+					add = WAR_SUPPORT_ALLY_HIGH	
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:major_power 
+					} 
+					add = WAR_SUPPORT_ALLY_MEDIUM
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:minor_power 
+					} 
+					add = WAR_SUPPORT_ALLY_LOW
+				}		
+			}
+			else_if = {
+				limit = { 
+					root = { country_rank < rank_value:minor_power }
+				} 
+				initiator = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_MAX
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:major_power } 
+						add = WAR_SUPPORT_ALLY_HIGH
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:minor_power } 
+						add = WAR_SUPPORT_ALLY_MEDIUM
+					}
+					else_if = { 
+						limit = { country_rank >= root.country_rank country_rank < rank_value:minor_power } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:great_power 
+					} 
+					add = WAR_SUPPORT_ALLY_MAX
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:major_power 
+					} 
+					add = WAR_SUPPORT_ALLY_HIGH
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:minor_power 
+					} 
+					add = WAR_SUPPORT_ALLY_MEDIUM
+				}
+				every_scope_initiator_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank >= root.country_rank country_rank < rank_value:minor_power 
+					} 
+					add = WAR_SUPPORT_ALLY_LOW
+				}	
+			}
+		}
+		else_if = {
+			limit = { any_scope_target_ally = { this = root } }
+			if = { 
+				limit = { 
+					root = { country_rank = rank_value:great_power }
+				} 
+				target = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_target_ally = {
+					limit = { not = { this = root } country_rank = rank_value:great_power }
+					add = WAR_SUPPORT_ALLY_LOW
+				}
+			}
+			else_if = {
+				limit = { 
+					root = { country_rank = rank_value:major_power }
+				} 
+				target = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_MEDIUM
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:major_power } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_target_ally = {
+					limit = { 
+						country_rank = rank_value:great_power 
+						not = { this = root } 
+					} 
+					add = WAR_SUPPORT_ALLY_MEDIUM	
+				}
+				every_scope_target_ally = {
+					limit = { 
+						country_rank = rank_value:major_power 
+						not = { this = root } 
+					} 
+					add = WAR_SUPPORT_ALLY_LOW
+				}		
+			}
+			else_if = {
+				limit = { 
+					root = { country_rank = rank_value:minor_power }
+				} 
+				target = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_HIGH	
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:major_power } 
+						add = WAR_SUPPORT_ALLY_MEDIUM
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:minor_power } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_target_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:great_power 
+					} 
+					add = WAR_SUPPORT_ALLY_HIGH	
+				}
+				every_scope_target_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:major_power 
+					} 
+					add = WAR_SUPPORT_ALLY_MEDIUM
+				}
+				every_scope_target_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:minor_power 
+					} 
+					add = WAR_SUPPORT_ALLY_LOW
+				}		
+			}
+			else_if = {
+				limit = { 
+					root = { country_rank < rank_value:minor_power }
+				} 
+				target = {
+					if = { 
+						limit = { country_rank = rank_value:great_power } 
+						add = WAR_SUPPORT_ALLY_MAX
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:major_power } 
+						add = WAR_SUPPORT_ALLY_HIGH
+					}
+					else_if = { 
+						limit = { country_rank = rank_value:minor_power } 
+						add = WAR_SUPPORT_ALLY_MEDIUM
+					}
+					else_if = { 
+						limit = { country_rank = root.country_rank } 
+						add = WAR_SUPPORT_ALLY_LOW
+					}
+				}
+				every_scope_target_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:great_power 
+					} 
+					add = WAR_SUPPORT_ALLY_MAX
+				}
+				every_scope_target_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:major_power 
+					} 
+					add = WAR_SUPPORT_ALLY_HIGH
+				}
+				every_scope_target_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank = rank_value:minor_power 
+					} 
+					add = WAR_SUPPORT_ALLY_MEDIUM
+				}
+				every_scope_target_ally = {
+					limit = { 
+						not = { this = root }
+						country_rank >= root.country_rank country_rank < rank_value:minor_power 
+					} 
+					add = WAR_SUPPORT_ALLY_LOW
+				}	
+			}
+		}
+	}
 }
 
 war_exhaustion_from_casualties = {
 	root = {
 		if = { 
 			limit = { has_variable_list = casualties_country_list } 
-			random_in_list = {
+			every_in_list = {
 				variable = casualties_country_list
 				limit = {
 					var:war_tag ?= scope:war
@@ -30,11 +477,17 @@ war_exhaustion_from_casualties = {
 				save_temporary_scope_as = casualties_struct
 				add = var:delta
 				if = {
-					limit = { var:last_mobilized > 0 }
-					divide = var:last_mobilized	
+					limit = { var:last_mobilized > 0 var:last_all_pops > 0 }
+					divide = {
+						add = var:last_all_pops
+						subtract = var:last_mobilized
+						multiply = 0.05
+						add = var:last_mobilized
+					}
 				}
+
 				multiply = 1000 
-				multiply = 0.2
+				multiply = 0.1
 				multiply = {
 					add = define:NWar|WAR_EXHAUSTION_KIA_BASE_MULTIPLIER
 					add = {
@@ -42,37 +495,20 @@ war_exhaustion_from_casualties = {
 						multiply = define:NWar|WAR_EXHAUSTION_KIA_BATTLES_LOST_MULTIPLIER
 					}
 				}
-			}	
+			}
 		}
 	}
+}
 
-	#every_character = {
-	#	limit = {
-	#		has_variable = is_struct
-	#		has_variable = war_tag
-	#		has_variable = country_tag
-	#	}
-	#	if = {
-	#		limit = {
 
-	#		}
-	#		save_temporary_scope_as = casualties_struct 
-	#		add = var:delta
-	#		if = {
-	#			limit = { var:last_mobilized > 0 }
-	#			divide = var:last_mobilized	
-	#		}
-	#		multiply = 1000 
-	#		multiply = 0.2
-	#		multiply = {
-	#			add = define:NWar|WAR_EXHAUSTION_KIA_BASE_MULTIPLIER
-	#			add = {
-	#				prev = { add = "size_weighted_lost_battles_fraction(scope:war)" }
-	#				multiply = define:NWar|WAR_EXHAUSTION_KIA_BATTLES_LOST_MULTIPLIER
-	#			}
-	#		}
-	#	}
-	#}
+war_exhaustion_from_enemy_contested_wargoals = {
+	add = define:NWar|WAR_EXHAUSTION_CONTESTED_ENEMY_WARGOALS
+	multiply = "enemy_contested_wargoals(scope:war)"
+}
+
+military_size = {
+	add = army_size_including_conscripts
+	add = navy_size
 }
 
 war_exhaustion_from_lobby_clout = {
@@ -106,6 +542,10 @@ war_exhaustion = {
 	save_temporary_value_as = temp_war_exhaustion_from_lobby_clout
 	value = war_support_from_lobby_clout
 	save_temporary_value_as = temp_war_support_from_lobby_clout
+	value = war_duration
+	save_temporary_value_as = temp_war_duration
+	value = ally_support
+	save_temporary_value_as = temp_ally_support
 	# end save temp values
 
 	# reset the calculation to the base
@@ -138,7 +578,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation < 0.25
 			}
 			add = {
-				add = 0.5
+				add = 1
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE"
 			}
 		}
@@ -147,7 +587,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation < 0.5
 			}
 			add = {
-				add = 1.0
+				add = 10.0
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL"
 			}
 		}
@@ -156,7 +596,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation < 0.75
 			}
 			add = {
-				add = 2.0
+				add = 15.0
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH"
 			}
 		}
@@ -165,7 +605,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation < 0.9
 			}
 			add = {
-				add = 3.0
+				add = 30.0
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME"
 			}
 		}
@@ -174,7 +614,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation <= 1.0
 			}
 			add = {
-				add = 10.0
+				add = 50.0
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_TOTAL"
 			}
 		}
@@ -200,6 +640,23 @@ war_exhaustion = {
 				min = 0
 				desc = "WAR_EXHAUSTION_FROM_country_war_exhaustion_casualties_mult"
 			}
+		}
+	}
+
+	if = {
+		limit = { scope:temp_war_duration >= 0.01 }
+		add = {
+			add = scope:temp_war_duration
+			desc = "WAR_EXHAUSTION_WAR_DURATION"
+		}
+	}
+
+	if = {
+		limit = { scope:temp_ally_support <= 0.01 }
+		add = {
+			add = scope:temp_ally_support
+			desc = "WAR_EXHAUSTION_ALLY_RANKS"
+			min = WAR_SUPPORT_FROM_ALLIES_MAX
 		}
 	}
 

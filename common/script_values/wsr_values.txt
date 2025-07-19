@@ -9,3 +9,9 @@
 		add = workforce
 	}
 }
+
+all_pop = {
+	every_scope_pop = {
+		add = workforce
+	}
+}

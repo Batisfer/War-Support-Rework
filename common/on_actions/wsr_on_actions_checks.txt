@@ -3,23 +3,30 @@
         every_country = {
 			limit = { is_at_war = yes }
 			trigger_event = { id = check_casualties.1 }
+			trigger_event = { id = check_casualties.2 days = 5 }
 		}
+    }
+}
+
+on_yearly_pulse = {
+    effect = {
+        trigger_event = { id = check_casualties.3 }
     }
 }
 
 on_diplo_play_war_start = {
 	effect = {
 		root = {
-			target = {
+			target ?= {
 				trigger_event = { id = check_casualties.1 }
 			}
-			initiator = {
+			initiator ?= {
 				trigger_event = { id = check_casualties.1 }
 			}
-			every_scope_target_ally = {
+			every_scope_target_ally ?= {
 				trigger_event = { id = check_casualties.1 }							
 			}
-			every_scope_initiator_ally = {
+			every_scope_initiator_ally ?= {
 				trigger_event = { id = check_casualties.1 }									
 			}
 		}
@@ -28,39 +35,21 @@ on_diplo_play_war_start = {
 
 on_war_end = {
 	effect = {
-		every_character = {
-			if = {
-				limit = {
-					has_variable = is_struct
-					has_variable = war_tag
-				}
-				debug_log = war_ended
-				debug_log_scopes = yes
-				if = {
-					limit = {
-						root.war = var:war_tag
-					}
-					debug_log_scopes = yes
-					root = {
-						target ?= {
-							set_local_variable = { name = current_war value = root.war }
-							trigger_event = { id = check_casualties.2 }
-						}
-						initiator ?= {
-							set_local_variable = { name = current_war value = root.war }
-							trigger_event = { id = check_casualties.2 }
-						}
-						every_scope_target_ally ?= {
-							set_local_variable = { name = current_war value = root.war }
-							trigger_event = { id = check_casualties.2 }							
-						}
-						every_scope_initiator_ally ?= {
-							set_local_variable = { name = current_war value = root.war }
-							trigger_event = { id = check_casualties.2 }									
-						}
-					}
-				}
-			}		
+		target ?= {
+			set_local_variable = { name = current_war value = root.war }
+			remove_war_casualties = yes
+		}
+		initiator ?= {
+			set_local_variable = { name = current_war value = root.war }
+			remove_war_casualties = yes
+		}
+		every_scope_target_ally ?= {
+			set_local_variable = { name = current_war value = root.war }
+			remove_war_casualties = yes					
+		}
+		every_scope_initiator_ally ?= {
+			set_local_variable = { name = current_war value = root.war }
+			remove_war_casualties = yes							
 		}
 	}
 }

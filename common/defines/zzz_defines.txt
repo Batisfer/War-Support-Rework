@@ -1,0 +1,17 @@
+﻿NWar = {
+	WAR_EXHAUSTION_MAX = 150
+
+	DEVASTATION_INCREASE_RATE = 0.2 #was 0.1 # Per day, scales with level of occupation
+	DEVASTATION_FROM_BATTLES = 0.25 #was 0.1 # For each battle
+
+
+	#UHW Paramters - check Ultra Historical Warfare if you haven't - it's a great mod
+	WAR_EXHAUSTION_BASE = 0.05 #was 0.25
+	WAR_EXHAUSTION_KIA_FACTOR = 40.0 #was 5.0 # Scaled by casualties compared to total manpower
+	WAR_EXHAUSTION_KIA_BASE_MULTIPLIER = 0.10 #was 0.25	# War Exhaustion from casualties is always multiplied by at least this
+	WAR_EXHAUSTION_KIA_BATTLES_LOST_MULTIPLIER = 0.66 	#was 0.75 # At 100% of battles lost by our side, War Exhaustion from casualties is further multiplied by this
+
+	DAYS_BETWEEN_WAR_EXHAUSTION = 14 #was 7 # Every this many days war support will be reduced by the war exhaustion formula
+
+	OCCUPATION_STATE_DEFENSIVE_BATTLE_VICTORY_SCORE = 10 #was 100 # How many occupation "points" each country receives after winning a defensive battle
+}
