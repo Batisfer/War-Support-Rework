@@ -2,5 +2,26 @@
 WAR_EXHAUSTION_FROM_CASUALTIES_NEW: "[SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('delta').GetValue|Dv] [concept_casualties] sustained over the past month, drawn from the #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_mobilized').GetValue|Dv]#! troops mobilized at its outset, out of a total pool of #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_all_pops').GetValue|Dv]#! potential recruits with [SCOPE.sWar('war').GetSizeWeightedLostBattlesFraction(SCOPE.GetRootScope.GetCountry.Self)|%1v] of all engagements resulting in defeat to date." 
 #Test = #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('enemy_wargoal_contest_before').GetValue|D]#! - #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('enemy_wargoal_contest_current').GetValue|D]#! - #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_wargoal_contest_before').GetValue|D]#! - #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_wargoal_contest_current').GetValue|D]#! - #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('stalemate_duration').GetValue|D]#! - #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('war_duration').GetValue|D]#!"
 
-WAR_EXHAUSTION_WAR_DURATION: "lack of progress for #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('stalemate_duration').GetValue]#! months — war-goal control: #v [Multiply_CFixedPoint(SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_wargoal_contest_current').GetValue, '(CFixedPoint)100')]%#!, enemy territory occupied: #v [Multiply_CFixedPoint(SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_current').GetValue, '(CFixedPoint)100')]%#!"
+WAR_EXHAUSTION_WAR_DURATION: "lack of [concept_progress_war_exhaustion] for #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('stalemate_duration').GetValue]#! months"
+##v [Multiply_CFixedPoint(SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_wargoal_contest_current').GetValue, '(CFixedPoint)100')]%#!, enemy territory occupied: #v [Multiply_CFixedPoint(SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_current').GetValue, '(CFixedPoint)100')]%#!
 WAR_EXHAUSTION_ALLY_RANKS: "allied countries and their comparative rank"
+WAR_EXHAUSTION_EVENTS: "#tooltip:[GetRawTextTooltipTag('WAR_EXHAUSTION_EVENTS_TT')] #underline #p Event Modifiers #!#!#!"
+WAR_EXHAUSTION_EVENTS_TT:"[ROOT.AccessCountry.AccessModifier.GetBreakdownFor('war_support_exhastion_reduction_add').GetBreakdown]"
+
+concept_progress_war_exhaustion: "Progress"
+concept_progress_war_exhaustion_desc: "Progress in [concept_war] is measured by either:\n\n- Gaining control of a [Concept('concept_war_goal', '$concept_war_goal$')]\n- Occupying more than #v [GetPlayer.MakeScope.ScriptValue('WAR_SUPPORT_MINIMAL_ADVANCE')]%#! of the enemy's territory within a single month.\n\nIf you control #v 100%#! of [Concept('concept_war_goal', '$concept_war_goals$')], the penalty for lack of territorial progress does not apply."
+
+war_support_exhastion_reduction_add: "[concept_war_exhaustion] every [GetDefine('NWar', 'DAYS_BETWEEN_WAR_EXHAUSTION')] days"
+war_support_exhastion_reduction_add_desc: "[concept_war_exhaustion] every [GetDefine('NWar', 'DAYS_BETWEEN_WAR_EXHAUSTION')] days"
+
+rule_wsr_events_rule:"#yellow WSR#! | War Support Events"
+setting_wsr_events_disabled_rule:"Disabled"
+setting_wsr_events_disabled_rule_desc:"Events related to [concept_war_support] are turned off for both you and the AI."
+setting_wsr_events_player_only_rule:"Player Only"
+setting_wsr_events_player_only_rule_desc:"Only the Player can receive events related to [concept_war_support]."
+setting_wsr_events_all_rule:"Player & AI"
+setting_wsr_events_all_rule_desc:"Both the Player and the AI will get events related to [concept_war_support]."
+
+
+ADD_WAR_WAR_SUPPORT:1 "[Country.GetAdjectiveNoFormatting] [concept_war_support] in [War.GetName] increases by $VALUE|+$"
+ADD_WAR_WAR_SUPPORT_NEG:1 "[Country.GetAdjectiveNoFormatting] [concept_war_support] in [War.GetName] decreases by $VALUE|-$"

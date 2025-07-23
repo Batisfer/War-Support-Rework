@@ -2,19 +2,31 @@
 # scope:war = the war we're evaluating war exhaustion for
 # No randomness is allowed in this script value
 
-WAR_SUPPORT_ALLY_MAX = -7
-WAR_SUPPORT_ALLY_HIGH = -5
-WAR_SUPPORT_ALLY_MEDIUM = -3
-WAR_SUPPORT_ALLY_LOW = -1
+WAR_SUPPORT_ALLY_MAX = -7 #war exhaustion reduction from max difference in rank
+WAR_SUPPORT_ALLY_HIGH = -5 #war exhaustion reduction from high difference in rank
+WAR_SUPPORT_ALLY_MEDIUM = -3 #war exhaustion reduction from #medium difference in ranka
+WAR_SUPPORT_ALLY_LOW = -1 #war exhaustion reduction from same rank
 
-WAR_SUPPORT_MINIMAL_ADVANCE = 3
+WAR_SUPPORT_MINIMAL_ADVANCE = 3 #percent of conquer per month to not count it as a stalemate
 
-WAR_SUPPORT_FROM_ALLIES_MAX = -50
-WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS = 15
+WAR_SUPPORT_FROM_ALLIES_MAX = -50 #maximum war exhaustion reduction from allies
+WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS = 15 #number of months before stalemate debuff can occur
+WAR_SUPPORT_STALEMATE_COOLDOWN = 3 #number of months after which you get a cooldown to stalemate calculation
 
+WAR_SUPPORT_DURATION_MODIFIER = 0.015 #modifier to a stalemate debuff
+
+
+
+war_support = {
+	value = "has_war_support(root)"
+}
 
 total_casualties = {
 	value = "num_country_casualties(root)"
+}
+
+war_support_events = {
+	add = modifier:war_support_exhastion_reduction_add
 }
 
 war_duration = {
@@ -34,7 +46,7 @@ war_duration = {
 				if = { 
 					limit = { scope:temp_dur >= 0.1 } 
 					multiply = scope:temp_dur 
-					multiply = 0.01 
+					multiply = WAR_SUPPORT_DURATION_MODIFIER
 				}
 				multiply = {
 					value = 1
@@ -546,6 +558,8 @@ war_exhaustion = {
 	save_temporary_value_as = temp_war_duration
 	value = ally_support
 	save_temporary_value_as = temp_ally_support
+	value = war_support_events
+	save_temporary_value_as = temp_war_support_events
 	# end save temp values
 
 	# reset the calculation to the base
@@ -587,7 +601,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation < 0.5
 			}
 			add = {
-				add = 10.0
+				add = 15.0
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL"
 			}
 		}
@@ -596,7 +610,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation < 0.75
 			}
 			add = {
-				add = 15.0
+				add = 25.0
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH"
 			}
 		}
@@ -605,7 +619,7 @@ war_exhaustion = {
 				scope:temp_enemy_occupation < 0.9
 			}
 			add = {
-				add = 30.0
+				add = 35.0
 				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME"
 			}
 		}
@@ -657,6 +671,14 @@ war_exhaustion = {
 			add = scope:temp_ally_support
 			desc = "WAR_EXHAUSTION_ALLY_RANKS"
 			min = WAR_SUPPORT_FROM_ALLIES_MAX
+		}
+	}
+
+	if = {
+		limit = { scope:temp_war_support_events <= 0.01 }
+		add = {
+			add = scope:temp_war_support_events
+			desc = "WAR_EXHAUSTION_EVENTS"
 		}
 	}
 

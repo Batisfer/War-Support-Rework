@@ -1,0 +1,12 @@
+﻿wsr_events_rule = {
+	default = wsr_events_disabled_rule
+
+	wsr_events_disabled_rule = {
+	}
+
+	wsr_events_player_only_rule = {
+	}
+
+	wsr_events_all_rule = {
+	}
+}

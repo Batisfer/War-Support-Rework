@@ -1,4 +1,87 @@
-﻿mobilized_pop = {
+﻿WAR_SUPPORT_MIN_VG_CHANCE = 0.001
+WAR_SUPPORT_MAX_VG_CHANCE = 0.001
+WAR_SUPPORT_MAX_G_CHANCE = 0.005
+WAR_SUPPORT_MAX_B_CHANCE = 0.005
+WAR_SUPPORT_MIN_VB_CHANCE = 0.001
+WAR_SUPPORT_MAX_VB_CHANCE = 0.003
+
+war_support_vg_chance = {
+	value = local_var:war_support_temp
+	divide = 100 #1
+	save_temporary_value_as = w #1
+
+	value = WAR_SUPPORT_MIN_VG_CHANCE #0.005
+	add = { 
+		value     = scope:w #1
+		multiply  = scope:w #1
+		multiply  = WAR_SUPPORT_MAX_VG_CHANCE #0.015
+	}
+
+	multiply = 100 
+}
+
+war_support_g_chance = {
+    value = local_var:war_support_temp
+    divide = 100
+    min = 0
+    max = 1
+    save_temporary_value_as = w
+
+    value = scope:w
+    multiply = { value = 1 subtract = scope:w }
+
+    multiply = WAR_SUPPORT_MAX_G_CHANCE
+    multiply = 100
+}
+
+war_support_b_chance = {
+    value = local_var:war_support_temp 
+    divide = 100
+    min = 0
+    max = 1
+    save_temporary_value_as = w
+
+    value = 1
+	subtract = scope:w
+	save_temporary_value_as = 1w
+	
+	value = 0
+	add = {
+		value = scope:1w
+		multiply = scope:1w
+	}
+
+    multiply = WAR_SUPPORT_MAX_B_CHANCE
+    multiply = 100 
+}
+
+war_support_vb_chance = {
+	value = 100
+	subtract = local_var:war_support_temp
+	divide = 100
+	min = 0
+	max = 1
+
+	save_temporary_value_as = inv_w
+
+	value = WAR_SUPPORT_MIN_VB_CHANCE
+	add = {
+		value = scope:inv_w
+		multiply = scope:inv_w
+		multiply = WAR_SUPPORT_MAX_VB_CHANCE
+	}
+	multiply = 100
+}
+
+war_support_nothing_chance = {
+	add = 100
+	subtract = war_support_vg_chance
+	subtract = war_support_g_chance
+	subtract = war_support_b_chance
+	subtract = war_support_vb_chance
+}
+
+mobilized_pop = {
 	every_scope_pop = {
 		limit = {
 			OR = {
@@ -14,4 +97,34 @@ all_pop = {
 	every_scope_pop = {
 		add = workforce
 	}
+}
+
+wsr_money_amount_multiplier_very_small = {
+    value = root.gdp
+    divide = 100000
+    multiply = { 2 4 }
+    round = yes
+    multiply = 100
+    min = 100
+	multiply = -1 
+}
+
+wsr_money_amount_multiplier_small = {
+    value = root.gdp
+    divide = 100000
+    multiply = { 3 7 }
+    round = yes
+    multiply = 100
+    min = 100
+	multiply = -1 
+}
+
+wsr_money_amount_multiplier_medium = {
+    value = root.gdp
+    divide = 100000
+    multiply = { 8 9 }
+    round = yes
+    multiply = 100
+    min = 100
+	multiply = -1 
 }

@@ -86,21 +86,51 @@ manage_wargoal_contest = {
 				var:war_tag = $war_tag$
 			}
 
-			set_variable = { name = our_wargoal_contest_before value = var:our_wargoal_contest_current}
+			set_local_variable = { name = wargoal_temp value = var:our_wargoal_contest_current}
+			set_variable = { name = our_wargoal_contest_before value = local_var:wargoal_temp}
 			set_variable = { name = our_wargoal_contest_current value = $our_wargoal_contest_current$}
 
-			set_variable = { name = our_occupation_before value = var:our_occupation_current }
+			set_local_variable = { name = occ_temp value = var:our_occupation_current}
+			set_variable = { name = our_occupation_before value = local_var:occ_temp }
 			set_variable = { name = our_occupation_current value = $our_occupation_current$ }
 
+
 			if = {
-				limit = {
-					var:our_wargoal_contest_current <= var:our_wargoal_contest_before
-					var:war_duration > WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS
-					NOT = { var:our_wargoal_contest_current = 1 }
+				limit = { var:war_duration > WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS }
+
+				if = {
+					limit = { 
+						OR = {
+							var:our_wargoal_contest_current > var:our_wargoal_contest_before 
+							var:our_wargoal_contest_current = 1
+						}
+					}
+					set_variable = { name = stalemate_duration value = 0 }
+					set_variable = { name = progress_cooldown value = WAR_SUPPORT_STALEMATE_COOLDOWN }
 				}
-				change_variable = { name = stalemate_duration add = 1 }
+				else_if = {
+					limit = { var:progress_cooldown > 0 }
+					change_variable = { name = progress_cooldown add  = -1 }
+				}
+				else_if = {
+					limit = {
+						var:our_wargoal_contest_current <= var:our_wargoal_contest_before
+						NOT = { var:our_wargoal_contest_current = 1 }
+					}
+					change_variable = { name = stalemate_duration add  = 1 }
+				}
 			}
-			else = { set_variable = { name = stalemate_duration value = 0 } }
+			else = { set_variable = { name = progress_cooldown value = 0 } }
+		
+			#if = {
+			#	limit = {
+			#		var:our_wargoal_contest_current <= var:our_wargoal_contest_before
+			#		var:war_duration > WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS
+			#		NOT = { var:our_wargoal_contest_current = 1 }
+			#	}
+			#	change_variable = { name = stalemate_duration add = 1 }
+			#}
+			#else = { set_variable = { name = stalemate_duration value = 0 } }
 		}
 	} 
 }
