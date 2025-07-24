@@ -1348,22 +1348,15 @@ war_support_entry.1 = {
 							var:war_tag = local_var:current_war
 						}
 						root = {
-							set_variable = { name = test_vb value = war_support_vb_chance }
-							set_variable = { name = test_nothing value = war_support_nothing_chance }
-							set_variable = { name = test_vg value = war_support_vg_chance }
-							set_variable = { name = test_g value = war_support_g_chance }
-							set_variable = { name = test_b value = war_support_b_chance }	
-
 							random_list = {
-								1 = { 
+								0 = { 
 									modifier = {
 										add = war_support_nothing_chance
 									}
-									debug_log = nothing
 								}
-								1 = {
+								0 = {
 									modifier = {
-										multiply = war_support_vg_chance
+										add = war_support_vg_chance
 									}
 									random_list = {
 										1 = { trigger_event = { id = war_support_very_good.1 popup = yes } }
@@ -1372,13 +1365,11 @@ war_support_entry.1 = {
 										1 = { trigger_event = { id = war_support_very_good.4 popup = yes } }
 										1 = { trigger_event = { id = war_support_very_good.5 popup = yes } }
 										1 = { trigger_event = { id = war_support_very_good.6 popup = yes } }
-									}		
-									debug_log = very_good
-									
+									}											
 								}
-								1 = {
+								0 = {
 									modifier = {
-										multiply = war_support_g_chance
+										add = war_support_g_chance
 									}	
 									random_list = {
 										1 = { trigger_event = { id = war_support_good.1 popup = yes } }
@@ -1388,13 +1379,11 @@ war_support_entry.1 = {
 										1 = { trigger_event = { id = war_support_good.5 popup = yes } }
 										1 = { trigger_event = { id = war_support_good.6 popup = yes } }
 										1 = { trigger_event = { id = war_support_good.7 popup = yes } }
-									}
-									debug_log = good
-													
+									}									
 								}
-								1 = {
+								0 = {
 									modifier = {
-										multiply = war_support_b_chance
+										add = war_support_b_chance
 									}
 									random_list = {
 										1 = { trigger_event = { id = war_support_bad.1 popup = yes } } 
@@ -1405,11 +1394,10 @@ war_support_entry.1 = {
 										1 = { trigger_event = { id = war_support_bad.6 popup = yes } } 
 										1 = { trigger_event = { id = war_support_bad.7 popup = yes } } 
 									}
-									debug_log = bad			
 								}
-								1 = {
+								0 = {
 									modifier = {
-										multiply = war_support_vb_chance
+										add = war_support_vb_chance
 									}	
 									random_list = {
 										1 = { trigger_event = { id = war_support_very_bad.1 popup = yes } }
@@ -1418,8 +1406,7 @@ war_support_entry.1 = {
 										1 = { trigger_event = { id = war_support_very_bad.4 popup = yes } }
 										1 = { trigger_event = { id = war_support_very_bad.5 popup = yes } }
 										1 = { trigger_event = { id = war_support_very_bad.6 popup = yes } }
-									}
-									debug_log = very_bad					
+									}				
 								}
 							}							
 						}

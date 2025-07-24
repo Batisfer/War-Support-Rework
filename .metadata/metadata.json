@@ -3,8 +3,7 @@
 	"id" : "",
   "version" : "1.0",
   "supported_game_version" : "1.9.*",
-  "picture" : "",
-  "short_description" : "reworks war support",
+  "short_description" : "Complete rework of war support and war exhaustion system",
   "tags" : [],
   "relationships" : [
     {

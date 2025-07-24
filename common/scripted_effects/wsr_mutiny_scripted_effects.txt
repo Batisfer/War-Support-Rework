@@ -1,5 +1,18 @@
 ﻿manage_mutinies = {
 	if = {
+		limit = { 
+			not = { 
+				OR = {
+					has_modifier = war_support_mutiny_minor 
+					has_modifier = war_support_mutiny_moderate
+					has_modifier = war_support_mutiny_major
+					has_modifier = war_support_mutiny_severe
+				}
+			} 
+		}
+		add_modifier = { name = war_support_mutiny_minor days = $days$ }
+	}
+	else_if = {
 		limit = { has_modifier = war_support_mutiny_minor }
 		remove_modifier = war_support_mutiny_minor
 		add_modifier = { name = war_support_mutiny_moderate days = $days$ }
@@ -35,6 +48,6 @@
 		}
 	}
 	else = {
-		add_modifier = { name = war_support_mutiny_minor days = $days$ }
+		add_modifier = { name = war_support_mutiny_severe days = 120 }
 	}
 }
