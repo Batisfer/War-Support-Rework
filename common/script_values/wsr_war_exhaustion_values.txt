@@ -1,4 +1,4 @@
-﻿WAR_SUPPORT_MINIMAL_ADVANCE = 3 #percent of conquer per month to not count it as a stalemate
+﻿WAR_SUPPORT_MINIMAL_ADVANCE = 0.03 #percent of conquer per month to not count it as a stalemate
 
 WAR_SUPPORT_FROM_ALLIES_MAX = -50 #maximum war exhaustion reduction from allies
 WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS = 15 #number of months before stalemate debuff can occur

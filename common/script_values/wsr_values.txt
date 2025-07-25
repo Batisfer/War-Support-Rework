@@ -142,8 +142,8 @@ wsr_calculate_ally_war_support_bonus = {
 	value = {
 		value = 0 
 		if = {
-			limit = { this.country_rank <= rank_value:minor_power }	
-			add = 4
+			limit = { this.country_rank < rank_value:minor_power }	
+			add = 3
 		}
 		else = { 
 			add = this.country_rank
@@ -152,8 +152,8 @@ wsr_calculate_ally_war_support_bonus = {
 	subtract = {
 		value = 0
 		if = {
-			limit = { root.country_rank <= rank_value:minor_power }	
-			add = 4
+			limit = { root.country_rank < rank_value:minor_power }	
+			add = 3
 		}
 		else = { 
 			add = root.country_rank 
