@@ -8,10 +8,11 @@ WAR_SUPPORT_MAX_VG_CHANCE = 0.010
 WAR_SUPPORT_MAX_G_CHANCE = 0.015
 WAR_SUPPORT_MAX_B_CHANCE = 0.015
 WAR_SUPPORT_MIN_VB_CHANCE = 0.005
-WAR_SUPPORT_MAX_VB_CHANCE = 0.03
+WAR_SUPPORT_MAX_VB_CHANCE = 0.05
 
 war_support_vg_chance = {
 	value = local_var:war_support_temp
+	min = 0
 	divide = 100
 	save_temporary_value_as = w
 
@@ -28,6 +29,7 @@ war_support_vg_chance = {
 
 war_support_g_chance = {
     value = local_var:war_support_temp
+	min = 0
     divide = 100
     min = 0
     max = 1
@@ -43,6 +45,7 @@ war_support_g_chance = {
 
 war_support_b_chance = {
     value = local_var:war_support_temp 
+	min = 0
     divide = 100
     min = 0
     max = 1
@@ -65,7 +68,10 @@ war_support_b_chance = {
 
 war_support_vb_chance = {
 	value = 100
-	subtract = local_var:war_support_temp
+	subtract = {
+		value = local_var:war_support_temp
+		min = 0
+	}
 	divide = 100
 	min = 0
 	max = 1
@@ -80,6 +86,15 @@ war_support_vb_chance = {
 	}
 	multiply = 100
 	multiply = 100
+	if = {
+		limit = {
+			root = {
+				is_player = yes
+			}
+			local_var:war_support_temp <= 10
+		}
+		multiply = 3
+	}
 }
 
 war_support_nothing_chance = {
