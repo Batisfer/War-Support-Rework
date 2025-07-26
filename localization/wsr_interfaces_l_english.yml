@@ -6,7 +6,7 @@ WAR_EXHAUSTION_EVENTS: "[AccessScopeReference(SCOPE.GetRootScope).AccessCountry.
 WAR_EXHAUSTION_EVENTS_TT:""
 
 concept_progress_war_exhaustion: "Progress"
-concept_progress_war_exhaustion_desc: "Progress in [concept_war] is measured by either:\n\n- Gaining control of a [Concept('concept_war_goal', '$concept_war_goal$')]\n- Occupying more than #v [GetPlayer.MakeScope.ScriptValue('WAR_SUPPORT_MINIMAL_ADVANCE')]%#! of the enemy's territory within a single month.\n\nIf you control #v 100%#! of [Concept('concept_war_goal', '$concept_war_goals$')], the penalty for lack of territorial progress does not apply."
+concept_progress_war_exhaustion_desc: "Progress in [concept_war] is measured by either:\n\n- Gaining control of a [Concept('concept_war_goal', '$concept_war_goal$')]\n- Occupying more than #v [Multiply_CFixedPoint(GetPlayer.MakeScope.ScriptValue('WAR_SUPPORT_MINIMAL_ADVANCE'),'(CFixedPoint)100')]%#! of the enemy's territory within a single month.\n\nIf you control #v 100%#! of [Concept('concept_war_goal', '$concept_war_goals$')], the penalty for lack of territorial progress does not apply."
 
 war_support_exhastion_reduction_add: "[concept_war_exhaustion] every [GetDefine('NWar', 'DAYS_BETWEEN_WAR_EXHAUSTION')] days"
 war_support_exhastion_reduction_add_desc: "[concept_war_exhaustion] every [GetDefine('NWar', 'DAYS_BETWEEN_WAR_EXHAUSTION')] days"
