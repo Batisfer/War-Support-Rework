@@ -1,0 +1,80 @@
+﻿WAR_SUPPORT_BATTLE_EVENT_MODIFIER = 10
+WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE = 30
+
+#30000 Patt
+#40000 Pdef
+#60000 Matt
+#20000 Mdef
+
+wsr_battle_attack_hype_calculator_test = {
+    # Соотношение сил: defender_power / (attacker_power + defender_power)
+    value = 0
+    add = {
+        value = 60000  # Сила защитника
+        divide = 60000  # Сила нападающего
+    }
+
+    # Соотношение численности: defender_manpower / attacker_manpower
+    multiply = {
+        value = 100000  # Численность защитника
+        divide = 60000  # Численность нападающего
+    }
+
+	multiply = WAR_SUPPORT_BATTLE_EVENT_MODIFIER
+	save_temporary_value_as = temp_value
+
+	if = {
+		limit = { scope:temp_value <= 5 }
+		value = 0
+	}
+
+    min = 0
+    max = WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE
+}
+
+# ((defender_army_power_projection / attacker_army_power_projection) * (defender_troop_count / attacker_troop_count) * modifier
+wsr_battle_attack_hype_calculator = {
+    value = 0
+    add = {
+        scope:defender.owner = { value = army_power_projection }
+       	scope:attacker.owner = { divide = army_power_projection }
+    }
+
+    multiply = {
+        value = scope:battle_defender.starting_manpower
+        divide = scope:battle_attacker.starting_manpower
+    }
+
+	multiply = WAR_SUPPORT_BATTLE_EVENT_MODIFIER
+	save_temporary_value_as = temp_value
+
+	if = {
+		limit = { scope:temp_value <= 5 }
+		value = 0
+	}
+
+    min = 0
+    max = WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE
+}
+
+wsr_battle_defence_hype_calculator = {
+    value = 0
+    add = {
+        scope:attacker.owner = { value = army_power_projection } 
+        scope:defender.owner = { divide = army_power_projection }
+    }
+    multiply = {
+        value = scope:battle_attacker.starting_manpower
+        divide = scope:battle_defender.starting_manpower
+    }
+    multiply = WAR_SUPPORT_BATTLE_EVENT_MODIFIER
+
+    save_temporary_value_as = temp_value
+    if = {
+        limit = { scope:temp_value <= 5 }
+        value = 0
+    }
+
+    min = 0
+    max = WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE
+}

@@ -24,6 +24,7 @@ war_support_events = {
 	add = modifier:war_support_exhastion_reduction_add
 }
 
+#(stalemade_duration^2 * WAR_SUPPORT_DURATION_MODIFIER) * (1 - ((our_occupation_current - our_occupation_before) / WAR_SUPPORT_MINIMAL_ADVANCE )
 war_duration = {
 	root = {
 		if = { 
@@ -46,8 +47,7 @@ war_duration = {
 				multiply = {
 					value = 1
 					subtract = {
-						value = var:our_occupation_current
-						subtract = var:our_occupation_before
+						value = war_support_monthly_occupation
 						divide = WAR_SUPPORT_MINIMAL_ADVANCE
 						min = 0
 						max = 1

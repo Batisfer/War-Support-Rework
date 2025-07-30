@@ -22,6 +22,23 @@ on_war_end = {
 	}
 }
 
+on_battle_lost = {
+	on_actions = {
+		wsr_on_battle_lost
+	}
+}
+
+on_battle_won = {
+	on_actions = {
+		wsr_on_battle_won
+	}
+}
+
+on_monthly_pulse_country = {
+	on_actions = {
+		wsr_on_monthly_pulse_country
+	}
+}
 
 
 wsr_on_monthly_check_casualties = {
@@ -77,5 +94,28 @@ wsr_on_war_end = {
 			set_local_variable = { name = current_war value = root.war }
 			remove_war_casualties = yes							
 		}
+	}
+}
+
+wsr_on_battle_lost = {
+	events = {
+		war_support_battle.100
+	}
+}
+
+wsr_on_battle_won = {
+	events = {
+		war_support_battle.101
+	}
+}
+
+wsr_on_monthly_pulse_country = {
+	trigger = { 
+		is_player = yes
+		is_at_war = yes
+		has_game_rule = wsr_flavor_events_enabled_rule 
+	}
+	events = {
+		wsr_letter_event.100
 	}
 }

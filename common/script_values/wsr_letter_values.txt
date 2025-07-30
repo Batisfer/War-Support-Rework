@@ -1,0 +1,10 @@
+﻿LETTER_LITERACY_MAX = 0.7
+LETTER_MAX_CHANCE = 7
+
+wsr_letter_chance_value = {
+	value = root.literacy_rate
+	divide = LETTER_LITERACY_MAX
+	multiply = LETTER_MAX_CHANCE
+	min = 0
+	max = LETTER_MAX_CHANCE
+}

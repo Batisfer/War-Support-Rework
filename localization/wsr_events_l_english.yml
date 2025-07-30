@@ -40,7 +40,7 @@ war_support_very_bad.6.b:"Withdraw recruiters and concede the district"
 war_support_bad.1.t:"Weary Bayonets Demand Leave"
 war_support_bad.1.desc:"Months of unbroken fighting have drained the ranks. The soldiers petition for a rotation - one company in ten sent home for a short rest - warning they will \"take their own leave when the line breaks\" if ignored."
 war_support_bad.1.f:"\"We are not cowards, only men. Let us see our children once before the guns call us back.\""
-war_support_bad.1.a:"Grant the rotation — the front can wait."
+war_support_bad.1.a:"Grant the rotation - the front can wait."
 war_support_bad.1.b:"No leave until victory!"
 
 war_support_bad.2.t:"Loot for Low Spirits"

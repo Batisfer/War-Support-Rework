@@ -9,10 +9,6 @@ war_support_very_good.1 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
 	}
@@ -69,10 +65,6 @@ war_support_very_good.2 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
 	}
@@ -121,10 +113,6 @@ war_support_very_good.3 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_art_gallery.bk2"
 	}
@@ -172,10 +160,6 @@ war_support_very_good.4 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_russian_serfs.bk2"
 	}
@@ -223,10 +207,6 @@ war_support_very_good.5 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/southamerica_christianity.bk2"
 	}
@@ -275,10 +255,6 @@ war_support_very_good.6 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_before_the_battle.bk2"
 	}
@@ -355,10 +331,6 @@ war_support_good.1 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/unspecific_military_parade.bk2"
 	}
@@ -397,10 +369,6 @@ war_support_good.2 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/unspecific_military_parade.bk2"
 	}
@@ -448,10 +416,6 @@ war_support_good.3 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/unspecific_military_parade.bk2"
 	}
@@ -500,10 +464,6 @@ war_support_good.4 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/unspecific_military_parade.bk2"
 	}
@@ -543,10 +503,6 @@ war_support_good.5 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/unspecific_sick_in_hospital.bk2"
 	}
@@ -601,10 +557,6 @@ war_support_good.6 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
 	}
@@ -651,10 +603,6 @@ war_support_good.7 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_art_gallery.bk2"
 	}
@@ -708,9 +656,7 @@ war_support_bad.1 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
+
 
 	event_image = {
 		video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
@@ -763,9 +709,7 @@ war_support_bad.2 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
+
 
 	event_image = {
 		video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
@@ -823,10 +767,6 @@ war_support_bad.3 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_rich_and_poor.bk2"
 	}
@@ -868,10 +808,6 @@ war_support_bad.4 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 120
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/europenorthamerica_before_the_battle.bk2"
 	}
@@ -905,7 +841,10 @@ war_support_bad.4 = {
 			pop_type = soldiers
 			value = 0.02
 		}
-		modifier = { trigger = { wsr_check_radicals_soldiers = no } add = 150 }
+		ai_chance = {
+			base = 0
+			modifier = { trigger = { wsr_check_radicals_soldiers = no } add = 150 }
+		}
 	}
 
 	option = {
@@ -1058,10 +997,6 @@ war_support_very_bad.1 = {
 
 	duration = 1
 
-	cooldown = {
-		days = 360
-	}
-	
 	event_image = {
 		video = "gfx/event_pictures/middleeast_battlefield_trenches.bk2"
 	}
@@ -1070,11 +1005,9 @@ war_support_very_bad.1 = {
 		local_var:current_war = {
 			any_scope_front = {
 				any_scope_general = {
-					limit = { 
-						owner = root 
-						is_historical = no
-						exists = yes
-					}
+					owner = root 
+					is_historical = no
+					exists = yes
 				}
 			}
 		}		
@@ -1083,10 +1016,18 @@ war_support_very_bad.1 = {
 	immediate = {
 		local_var:current_war = {
 			random_scope_front = {
+				limit = { 
+					any_scope_general = { 
+						owner = root 
+						is_historical = no 
+						exists = yes 
+					} 
+				}
 				random_scope_general = {
 					limit = { 
 						owner = root 
 						is_historical = no
+						exists = yes
 					}
 					save_scope_as = hated_general
 				}
@@ -1158,10 +1099,10 @@ war_support_very_bad.2 = {
 				target = ROOT
 				value = -10
 			}	
-			add_radicals = {
-				value = 0.04
-			}		
 		}
+		add_radicals = {
+			value = 0.04
+		}		
     }
 }
 
@@ -1338,77 +1279,82 @@ war_support_entry.1 = {
 					root = player
 				}
 			}
-			random_scope_war = {
-				root = { 
-					set_local_variable = { name = current_war value = prev }
-					set_local_variable = { name = war_support_temp value = prev.war_support }
-					every_in_list = {
-						variable = casualties_country_list
-						limit = {
-							var:war_tag = local_var:current_war
+			
+			
+			ordered_in_list = {
+				variable = casualties_country_list
+				order_by = var:delta
+				if = {
+					limit = {
+						var:delta > 5000
+					}
+					var:war_tag = {
+						root = { 
+							set_local_variable = { name = war_support_temp value = prev.war_support } 
+							set_local_variable = { name = current_war value = prev } 
 						}
-						root = {
-							random_list = {
-								0 = { 
-									modifier = {
-										add = war_support_nothing_chance
-									}
+					}
+					root = { 
+						random_list = {
+							0 = { 
+								modifier = {
+									add = war_support_nothing_chance
 								}
-								0 = {
-									modifier = {
-										add = war_support_vg_chance
-									}
-									random_list = {
-										1 = { trigger_event = { id = war_support_very_good.1 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_good.2 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_good.3 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_good.4 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_good.5 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_good.6 popup = yes } }
-									}											
+							}
+							0 = {
+								modifier = {
+									add = war_support_vg_chance
 								}
-								0 = {
-									modifier = {
-										add = war_support_g_chance
-									}	
-									random_list = {
-										1 = { trigger_event = { id = war_support_good.1 popup = yes } }
-										1 = { trigger_event = { id = war_support_good.2 popup = yes } }
-										1 = { trigger_event = { id = war_support_good.3 popup = yes } }
-										1 = { trigger_event = { id = war_support_good.4 popup = yes } }
-										1 = { trigger_event = { id = war_support_good.5 popup = yes } }
-										1 = { trigger_event = { id = war_support_good.6 popup = yes } }
-										1 = { trigger_event = { id = war_support_good.7 popup = yes } }
-									}									
+								random_list = {
+									1 = { trigger_event = { id = war_support_very_good.1 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_good.2 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_good.3 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_good.4 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_good.5 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_good.6 popup = yes } }
+								}											
+							}
+							0 = {
+								modifier = {
+									add = war_support_g_chance
+								}	
+								random_list = {
+									1 = { trigger_event = { id = war_support_good.1 popup = yes } }
+									1 = { trigger_event = { id = war_support_good.2 popup = yes } }
+									1 = { trigger_event = { id = war_support_good.3 popup = yes } }
+									1 = { trigger_event = { id = war_support_good.4 popup = yes } }
+									1 = { trigger_event = { id = war_support_good.5 popup = yes } }
+									1 = { trigger_event = { id = war_support_good.6 popup = yes } }
+									1 = { trigger_event = { id = war_support_good.7 popup = yes } }
+								}									
+							}
+							0 = {
+								modifier = {
+									add = war_support_b_chance
 								}
-								0 = {
-									modifier = {
-										add = war_support_b_chance
-									}
-									random_list = {
-										1 = { trigger_event = { id = war_support_bad.1 popup = yes } } 
-										1 = { trigger_event = { id = war_support_bad.2 popup = yes } } 
-										1 = { trigger_event = { id = war_support_bad.3 popup = yes } } 
-										1 = { trigger_event = { id = war_support_bad.4 popup = yes } } 
-										1 = { trigger_event = { id = war_support_bad.5 popup = yes } } 
-										1 = { trigger_event = { id = war_support_bad.6 popup = yes } } 
-										1 = { trigger_event = { id = war_support_bad.7 popup = yes } } 
-									}
+								random_list = {
+									1 = { trigger_event = { id = war_support_bad.1 popup = yes } } 
+									1 = { trigger_event = { id = war_support_bad.2 popup = yes } } 
+									1 = { trigger_event = { id = war_support_bad.3 popup = yes } } 
+									1 = { trigger_event = { id = war_support_bad.4 popup = yes } } 
+									1 = { trigger_event = { id = war_support_bad.5 popup = yes } } 
+									1 = { trigger_event = { id = war_support_bad.6 popup = yes } } 
+									1 = { trigger_event = { id = war_support_bad.7 popup = yes } } 
 								}
-								0 = {
-									modifier = {
-										add = war_support_vb_chance
-									}	
-									random_list = {
-										1 = { trigger_event = { id = war_support_very_bad.1 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_bad.2 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_bad.3 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_bad.4 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_bad.5 popup = yes } }
-										1 = { trigger_event = { id = war_support_very_bad.6 popup = yes } }
-									}				
-								}
-							}							
+							}
+							0 = {
+								modifier = {
+									add = war_support_vb_chance
+								}	
+								random_list = {
+									1 = { trigger_event = { id = war_support_very_bad.1 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_bad.2 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_bad.3 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_bad.4 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_bad.5 popup = yes } }
+									1 = { trigger_event = { id = war_support_very_bad.6 popup = yes } }
+								}				
+							}
 						}
 					}
 				}

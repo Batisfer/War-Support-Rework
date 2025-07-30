@@ -1,9 +1,8 @@
 ﻿l_english:
-WAR_EXHAUSTION_FROM_CASUALTIES_NEW: "[SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('delta').GetValue|Dv] [concept_casualties] sustained over the past month, drawn from the #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_mobilized').GetValue|Dv]#! troops mobilized at its outset, out of a total pool of #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_all_pops').GetValue|Dv]#! potential recruits with [SCOPE.sWar('war').GetSizeWeightedLostBattlesFraction(SCOPE.GetRootScope.GetCountry.Self)|%1v] of all engagements resulting in defeat to date." 
+WAR_EXHAUSTION_FROM_CASUALTIES_NEW: "[SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('delta').GetValue|Dv] [concept_casualties] sustained over the past month, drawn from the #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_mobilized').GetValue|Dv]#! troops mobilized at its outset, out of a total pool of #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_all_pops').GetValue|Dv]#! potential recruits with [SCOPE.sWar('war').GetSizeWeightedLostBattlesFraction(SCOPE.GetRootScope.GetCountry.Self)|%1v] of all engagements resulting in defeat to date. - [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_before').GetValue] -> [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_current').GetValue] - BattleHype: [GetPlayer.MakeScope.GetVariable('test_battle_hype').GetValue], BattleShame: [GetPlayer.MakeScope.GetVariable('test_battle_shame').GetValue], BattleDefenceHype: [GetPlayer.MakeScope.GetVariable('test_battle_defend_hype').GetValue], Test: [GetPlayer.MakeScope.GetVariable('test_formula').GetValue]" 
 WAR_EXHAUSTION_WAR_DURATION: "lack of [concept_progress_war_exhaustion] for #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('stalemate_duration').GetValue]#! months"
 WAR_EXHAUSTION_ALLY_RANKS: "allied countries and their comparative rank"
 WAR_EXHAUSTION_EVENTS: "[AccessScopeReference(SCOPE.GetRootScope).AccessCountry.AccessModifier.GetBreakdownFor('war_support_exhastion_reduction_add').GetBreakdown]"
-WAR_EXHAUSTION_EVENTS_TT:""
 
 concept_progress_war_exhaustion: "Progress"
 concept_progress_war_exhaustion_desc: "Progress in [concept_war] is measured by either:\n\n- Gaining control of a [Concept('concept_war_goal', '$concept_war_goal$')]\n- Occupying more than #v [Multiply_CFixedPoint(GetPlayer.MakeScope.ScriptValue('WAR_SUPPORT_MINIMAL_ADVANCE'),'(CFixedPoint)100')]%#! of the enemy's territory within a single month.\n\nIf you control #v 100%#! of [Concept('concept_war_goal', '$concept_war_goals$')], the penalty for lack of territorial progress does not apply."
@@ -18,6 +17,12 @@ setting_wsr_events_player_only_rule:"Player Only"
 setting_wsr_events_player_only_rule_desc:"Only the Player can receive events related to [concept_war_support]."
 setting_wsr_events_all_rule:"Player & AI"
 setting_wsr_events_all_rule_desc:"Both the Player and the AI will get events related to [concept_war_support]."
+
+rule_wsr_flavor_events_rule:"#yellow WSR#! | Flavor Events"
+setting_wsr_flavor_events_disabled_rule:"Disabled"
+setting_wsr_flavor_events_disabled_rule_desc:"You won't get flavor events during wars."
+setting_wsr_flavor_events_enabled_rule:"Enabled"
+setting_wsr_flavor_events_enabled_rule_desc:"You will get flavor events during wars."
 
 
 ADD_WAR_WAR_SUPPORT:1 "[Country.GetAdjectiveNoFormatting] [concept_war_support] in [War.GetName] increases by $VALUE|+$"

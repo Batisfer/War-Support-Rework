@@ -10,3 +10,13 @@
 	wsr_events_all_rule = {
 	}
 }
+
+wsr_flavor_events_rule = {
+	default = wsr_flavor_events_disabled_rule
+
+	wsr_flavor_events_disabled_rule = {
+	}
+
+	wsr_flavor_events_enabled_rule = {
+	}
+}

@@ -105,6 +105,69 @@ war_support_nothing_chance = {
 	subtract = war_support_vb_chance
 }
 
+war_support_monthly_occupation = {
+	if = { 
+		limit = { has_variable_list = casualties_country_list } 
+		every_in_list = {	
+			variable = casualties_country_list
+			limit = {
+				var:war_tag ?= scope:war
+				var:country_tag ?= root
+			}
+			value = var:our_occupation_current
+			subtract = var:our_occupation_before
+		}
+	}
+}
+
+war_support_occupation_category = {
+	if = {
+		limit = { local_var:temp_occ <= 0.0 }
+		value = 0
+	}
+	else_if = {
+		limit = { local_var:temp_occ < 0.1	}
+		value = 1
+	}
+	else_if = {
+		limit = { local_var:temp_occ < 0.25 }
+		value = 2
+	}
+	else_if = {
+		limit = { local_var:temp_occ < 0.5 }
+		value = 3
+	}
+	else_if = {
+		limit = { local_var:temp_occ < 0.75 }
+		value = 4
+	}
+	else_if = {
+		limit = { local_var:temp_occ < 0.9 }
+		value = 5
+	}
+	else_if = {
+		limit = { local_var:temp_occ <= 1.0 }
+		value = 6
+	}
+}
+
+war_support_offensive_event_chance = {
+	if = { 
+		limit = { has_variable_list = casualties_country_list } 
+		every_in_list = {	
+			variable = casualties_country_list
+			limit = {
+				var:war_tag ?= scope:war
+				var:country_tag ?= root
+			}
+			value = 1
+			multiply = var:stalemate_duration
+			multiply = 2
+			max = 100
+		}
+	}
+}
+
 mobilized_pop = {
 	every_scope_pop = {
 		limit = {

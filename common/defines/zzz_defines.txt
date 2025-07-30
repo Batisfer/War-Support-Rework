@@ -3,8 +3,8 @@
 NWar = {
 	WAR_EXHAUSTION_MAX = 150
 
-	DEVASTATION_INCREASE_RATE = 0.2 #was 0.1 # Per day, scales with level of occupation
-	DEVASTATION_FROM_BATTLES = 0.25 #was 0.1 # For each battle
+	DEVASTATION_INCREASE_RATE = 0.15 #was 0.1 # Per day, scales with level of occupation
+	DEVASTATION_FROM_BATTLES = 0.15 #was 0.1 # For each battle
 
 	WAR_EXHAUSTION_BASE = 0.05 #was 0.25
 	WAR_EXHAUSTION_KIA_FACTOR = 40.0 #was 5.0 # Scaled by casualties compared to total manpower
