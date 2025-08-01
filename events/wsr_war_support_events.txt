@@ -105,6 +105,7 @@ check_casualties.3 = {
 				limit = {
 					has_variable = is_struct
 					not = { exists = var:war_tag }
+					has_variable = is_wsr_struct
 				}
 				set_local_variable = { name = char_to_process value = this }
 				destroy_struct = { struct = local_var:char_to_process }
@@ -135,6 +136,7 @@ check_casualties.4 = {
 			if = {
 				limit = { 
 					has_variable = is_struct
+					has_variable = is_wsr_struct
 				} 
 				set_local_variable = { name = char_to_process value = this }
 				destroy_struct = { struct = local_var:char_to_process }
