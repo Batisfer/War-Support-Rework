@@ -9,6 +9,7 @@
 				var:war_tag ?= $war_tag$
 			}
 
+			set_variable = is_wsr_struct
 			set_variable = { name = delta value = $casualties$ }
 			change_variable = { name = delta subtract = var:last_total }
 			set_variable = { name = last_total value = $casualties$ }
@@ -33,6 +34,7 @@
 		}
 
 		scope:war_casualties = {
+			set_variable = is_wsr_struct
 			set_variable = { name = country_tag  value = $country_tag$ }
 			set_variable = { name = war_tag value = $war_tag$ }
 			set_variable = { name = last_total value = $casualties$ }
