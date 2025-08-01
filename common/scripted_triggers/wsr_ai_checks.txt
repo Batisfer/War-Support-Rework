@@ -17,7 +17,7 @@ wsr_check_radicals_officers = {
 }
 
 wsr_check_war_support_bad = {
-	local_var:current_war = {
+	scope:war_from_struct = {
 		has_war_support = {
 			target = ROOT
 			value <= 60

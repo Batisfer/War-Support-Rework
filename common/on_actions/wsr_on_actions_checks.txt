@@ -98,12 +98,18 @@ wsr_on_war_end = {
 }
 
 wsr_on_battle_lost = {
+	trigger = {
+		root.country_rank >= rank_value:minor_power
+	}
 	events = {
 		war_support_battle.100
 	}
 }
 
 wsr_on_battle_won = {
+	trigger = {
+		root.country_rank >= rank_value:minor_power
+	}
 	events = {
 		war_support_battle.101
 	}
@@ -113,7 +119,8 @@ wsr_on_monthly_pulse_country = {
 	trigger = { 
 		is_player = yes
 		is_at_war = yes
-		has_game_rule = wsr_flavor_events_enabled_rule 
+		has_game_rule = wsr_flavor_events_enabled 
+		has_technology_researched = napoleonic_warfare
 	}
 	events = {
 		wsr_letter_event.100

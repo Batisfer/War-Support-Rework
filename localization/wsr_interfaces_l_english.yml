@@ -1,5 +1,5 @@
 ﻿l_english:
-WAR_EXHAUSTION_FROM_CASUALTIES_NEW: "[SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('delta').GetValue|Dv] [concept_casualties] sustained over the past month, drawn from the #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_mobilized').GetValue|Dv]#! troops mobilized at its outset, out of a total pool of #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_all_pops').GetValue|Dv]#! potential recruits with [SCOPE.sWar('war').GetSizeWeightedLostBattlesFraction(SCOPE.GetRootScope.GetCountry.Self)|%1v] of all engagements resulting in defeat to date. - [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_before').GetValue] -> [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_current').GetValue] - BattleHype: [GetPlayer.MakeScope.GetVariable('test_battle_hype').GetValue], BattleShame: [GetPlayer.MakeScope.GetVariable('test_battle_shame').GetValue], BattleDefenceHype: [GetPlayer.MakeScope.GetVariable('test_battle_defend_hype').GetValue], Test: [GetPlayer.MakeScope.GetVariable('test_formula').GetValue]" 
+WAR_EXHAUSTION_FROM_CASUALTIES_NEW: "[SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('delta').GetValue|Dv] [concept_casualties] sustained over the past month, drawn from the #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_mobilized').GetValue|Dv]#! troops mobilized at its outset, out of a total pool of #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('last_all_pops').GetValue|Dv]#! potential recruits with [SCOPE.sWar('war').GetSizeWeightedLostBattlesFraction(SCOPE.GetRootScope.GetCountry.Self)|%1v] of all engagements resulting in defeat to date. - [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_before').GetValue] -> [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('our_occupation_current').GetValue] - BattleHype: [GetPlayer.MakeScope.GetVariable('test_battle_hype').GetValue], BattleShame: [GetPlayer.MakeScope.GetVariable('test_battle_shame').GetValue]" 
 WAR_EXHAUSTION_WAR_DURATION: "lack of [concept_progress_war_exhaustion] for #v [SCOPE.sCharacter('casualties_struct').MakeScope.GetVariable('stalemate_duration').GetValue]#! months"
 WAR_EXHAUSTION_ALLY_RANKS: "allied countries and their comparative rank"
 WAR_EXHAUSTION_EVENTS: "[AccessScopeReference(SCOPE.GetRootScope).AccessCountry.AccessModifier.GetBreakdownFor('war_support_exhastion_reduction_add').GetBreakdown]"
@@ -19,11 +19,58 @@ setting_wsr_events_all_rule:"Player & AI"
 setting_wsr_events_all_rule_desc:"Both the Player and the AI will get events related to [concept_war_support]."
 
 rule_wsr_flavor_events_rule:"#yellow WSR#! | Flavor Events"
-setting_wsr_flavor_events_disabled_rule:"Disabled"
-setting_wsr_flavor_events_disabled_rule_desc:"You won't get flavor events during wars."
-setting_wsr_flavor_events_enabled_rule:"Enabled"
-setting_wsr_flavor_events_enabled_rule_desc:"You will get flavor events during wars."
+setting_wsr_flavor_events_disabled:"Disabled"
+setting_wsr_flavor_events_disabled_desc:"You won't get flavor events during wars."
+setting_wsr_flavor_events_enabled:"Enabled"
+setting_wsr_flavor_events_enabled_desc:"You will get flavor events during wars."
 
+rule_wsr_casualties_modifier_ai_rule: "#yellow WSR#! | Casualties Impact on War Support (AI)" 
+setting_wsr_casualties_modifier_ai_low: "Low (x0.5)"
+setting_wsr_casualties_modifier_ai_low_desc: "AI nations lose less war support from battlefield casualties."
+setting_wsr_casualties_modifier_ai_default: "Default"
+setting_wsr_casualties_modifier_ai_default_desc: "AI war support loss from casualties is unchanged."
+setting_wsr_casualties_modifier_ai_high: "High (x1.5)"
+setting_wsr_casualties_modifier_ai_high_desc: "AI nations lose more war support from battlefield casualties."
+setting_wsr_casualties_modifier_ai_very_high: "Very High (x2.0)"
+setting_wsr_casualties_modifier_ai_very_high_desc: "AI nations lose significantly more war support from battlefield casualties."
+
+rule_wsr_casualties_modifier_player_rule: "#yellow WSR#! | Casualties Impact on War Support (Player)"
+setting_wsr_casualties_modifier_player_low: "Low (x0.5)"
+setting_wsr_casualties_modifier_player_low_desc: "You lose less war support from battlefield casualties."
+setting_wsr_casualties_modifier_player_default: "Default"
+setting_wsr_casualties_modifier_player_default_desc: "Your war support loss from casualties is unchanged."
+setting_wsr_casualties_modifier_player_high: "High (x1.5)"
+setting_wsr_casualties_modifier_player_high_desc: "You lose more war support from battlefield casualties."
+setting_wsr_casualties_modifier_player_very_high: "Very High (x2.0)"
+setting_wsr_casualties_modifier_player_very_high_desc: "You lose significantly more war support from battlefield casualties."
+
+rule_wsr_stalemate_modifier_ai_rule: "#yellow WSR#! | Stalemate Impact on War Support (AI)"
+setting_wsr_stalemate_modifier_ai_low: "Low (x0.5)"
+setting_wsr_stalemate_modifier_ai_low_desc: "AI nations lose less war support when wars stagnate."
+setting_wsr_stalemate_modifier_ai_default: "Default"
+setting_wsr_stalemate_modifier_ai_default_desc: "AI war support loss from lack of progress is unchanged."
+setting_wsr_stalemate_modifier_ai_high: "High (x1.5)"
+setting_wsr_stalemate_modifier_ai_high_desc: "AI nations lose more war support when wars stagnate."
+setting_wsr_stalemate_modifier_ai_very_high: "Very High (x2.0)"
+setting_wsr_stalemate_modifier_ai_very_high_desc: "AI nations lose significantly more war support when wars stagnate."
+
+rule_wsr_stalemate_modifier_player_rule: "#yellow WSR#! | Stalemate Impact on War Support (Player)"
+setting_wsr_stalemate_modifier_player_low: "Low (x0.5)"
+setting_wsr_stalemate_modifier_player_low_desc: "You lose less war support when wars stagnate."
+setting_wsr_stalemate_modifier_player_default: "Default"
+setting_wsr_stalemate_modifier_player_default_desc: "Your war support loss from lack of progress is unchanged."
+setting_wsr_stalemate_modifier_player_high: "High (x1.5)"
+setting_wsr_stalemate_modifier_player_high_desc: "You lose more war support when wars stagnate."
+setting_wsr_stalemate_modifier_player_very_high: "Very High (x2.0)"
+setting_wsr_stalemate_modifier_player_very_high_desc: "You lose significantly more war support when wars stagnate."
 
 ADD_WAR_WAR_SUPPORT:1 "[Country.GetAdjectiveNoFormatting] [concept_war_support] in [War.GetName] increases by $VALUE|+$"
 ADD_WAR_WAR_SUPPORT_NEG:1 "[Country.GetAdjectiveNoFormatting] [concept_war_support] in [War.GetName] decreases by $VALUE|-$"
+
+
+
+
+
+
+
+

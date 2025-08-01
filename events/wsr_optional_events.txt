@@ -16,7 +16,7 @@ war_support_very_good.1 = {
 	option = {
 		name = war_support_very_good.1.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -32,7 +32,7 @@ war_support_very_good.1 = {
 	option = {
 		name = war_support_very_good.1.b
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -72,7 +72,7 @@ war_support_very_good.2 = {
 	option = {
 		name = war_support_very_good.2.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -87,7 +87,7 @@ war_support_very_good.2 = {
 
 	option = {
 		name = war_support_very_good.2.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -120,7 +120,7 @@ war_support_very_good.3 = {
 	option = {
 		name = war_support_very_good.3.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -135,7 +135,7 @@ war_support_very_good.3 = {
 
 	option = {
 		name = war_support_very_good.3.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -167,7 +167,7 @@ war_support_very_good.4 = {
 	option = {
 		name = war_support_very_good.4.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -182,7 +182,7 @@ war_support_very_good.4 = {
 
 	option = {
 		name = war_support_very_good.4.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -214,7 +214,7 @@ war_support_very_good.5 = {
 	option = {
 		name = war_support_very_good.5.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -229,7 +229,7 @@ war_support_very_good.5 = {
 
 	option = {
 		name = war_support_very_good.5.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -262,7 +262,7 @@ war_support_very_good.6 = {
 	option = {
 		name = war_support_very_good.6.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -290,7 +290,7 @@ war_support_very_good.6 = {
 
 	option = {
 		name = war_support_very_good.6.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -338,7 +338,7 @@ war_support_good.1 = {
 	option = {
 		name = war_support_good.1.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -349,7 +349,7 @@ war_support_good.1 = {
 	option = {
 		name = war_support_good.1.b
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -376,7 +376,7 @@ war_support_good.2 = {
 	option = {
 		name = war_support_good.2.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -391,7 +391,7 @@ war_support_good.2 = {
 	option = {
 		name = war_support_good.2.b
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -423,7 +423,7 @@ war_support_good.3 = {
 	option = {
 		name = war_support_good.3.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -439,7 +439,7 @@ war_support_good.3 = {
 	option = {
 		name = war_support_good.3.b
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -510,7 +510,7 @@ war_support_good.5 = {
 	option = {
 		name = war_support_good.5.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -610,7 +610,7 @@ war_support_good.7 = {
 	option = {
 		name = war_support_good.7.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -625,7 +625,7 @@ war_support_good.7 = {
 	option = {
 		name = war_support_good.7.b
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -665,7 +665,7 @@ war_support_bad.1 = {
 	option = {
 		name = war_support_bad.1.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -685,7 +685,7 @@ war_support_bad.1 = {
 
 	option = {
 		name = war_support_bad.1.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -5
@@ -718,7 +718,7 @@ war_support_bad.2 = {
 	option = {
 		name = war_support_bad.2.a
 		default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -744,7 +744,7 @@ war_support_bad.2 = {
 
 	option = {
 		name = war_support_bad.2.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -5
@@ -790,7 +790,7 @@ war_support_bad.3 = {
 		add_radicals = {
 			value = 0.02
 		}
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -5
@@ -830,7 +830,7 @@ war_support_bad.4 = {
 
 	option = {
 		name = war_support_bad.4.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -5
@@ -883,7 +883,7 @@ war_support_bad.5 = {
     option = {
         name = war_support_bad.5.b
         add_treasury = wsr_money_amount_multiplier_medium
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 5
@@ -932,7 +932,7 @@ war_support_bad.6 = {
     option = {
         name = war_support_bad.6.a
         default_option = yes
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = 10
@@ -1002,7 +1002,7 @@ war_support_very_bad.1 = {
 	}
 
 	trigger = {
-		local_var:current_war = {
+		scope:war_from_struct = {
 			any_scope_front = {
 				any_scope_general = {
 					owner = root 
@@ -1014,7 +1014,7 @@ war_support_very_bad.1 = {
 	}
 
 	immediate = {
-		local_var:current_war = {
+		scope:war_from_struct = {
 			random_scope_front = {
 				limit = { 
 					any_scope_general = { 
@@ -1054,7 +1054,7 @@ war_support_very_bad.1 = {
 
 	option = {
 		name = war_support_very_bad.1.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -2
@@ -1094,7 +1094,7 @@ war_support_very_bad.2 = {
     }
     option = {
         name = war_support_very_bad.2.b
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -10
@@ -1125,7 +1125,7 @@ war_support_very_bad.3 = {
        	add_radicals = {
 			value = 0.04
 		}
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -10
@@ -1206,7 +1206,7 @@ war_support_very_bad.5 = {
 			value = 0.03
 			pop_type = soldiers
 		}
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -5
@@ -1249,7 +1249,7 @@ war_support_very_bad.6 = {
 				value = 0.05
 			}
 		} 
-		local_var:current_war = {
+		scope:war_from_struct = {
 			add_war_war_support = {
 				target = ROOT
 				value = -5
@@ -1276,25 +1276,32 @@ war_support_entry.1 = {
 			limit = {
 				OR = {
 					NOT = { has_game_rule = wsr_events_player_only_rule }
-					root = player
+					is_player = yes
 				}
 			}
 			
-			
-			ordered_in_list = {
+			ordered_in_list = { #take only wars with casualties to avoid events on wars without fronts and such
 				variable = casualties_country_list
 				order_by = var:delta
+
+				max = 1
+
 				if = {
 					limit = {
-						var:delta > 5000
+						var:delta >= 1000
+						exists = var:war_tag
 					}
-					var:war_tag = {
-						root = { 
-							set_local_variable = { name = war_support_temp value = prev.war_support } 
-							set_local_variable = { name = current_war value = prev } 
-						}
+					var:war_tag = { save_scope_as = war_from_struct }
+				}
+			}
+			if = {
+				limit = { exists = scope:war_from_struct }
+				random_scope_war = {
+					limit = { 
+						this = scope:war_from_struct
 					}
 					root = { 
+						set_local_variable = { name = war_support_temp value = prev.war_support }
 						random_list = {
 							0 = { 
 								modifier = {
@@ -1358,7 +1365,7 @@ war_support_entry.1 = {
 						}
 					}
 				}
-			}
+			}	
 		}
 	}
 }

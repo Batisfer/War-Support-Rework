@@ -45,6 +45,7 @@ war_support_battle.1 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = first_option
 		ai_chance = {
 			base = 0
 		}
@@ -66,6 +67,7 @@ war_support_battle.1 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = second_option
 		ai_chance = {
 			base = 50
 		}
@@ -82,6 +84,7 @@ war_support_battle.1 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = third_option
 		ai_chance = {
 			base = 0
 			modifier = { trigger = { wsr_check_debt_normal = yes } add = 100 }
@@ -127,6 +130,7 @@ war_support_battle.2 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = first_option
 		ai_chance = {
 			base = 0
 		}
@@ -148,6 +152,7 @@ war_support_battle.2 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = second_option
 		ai_chance = {
 			base = 50
 		}
@@ -164,6 +169,7 @@ war_support_battle.2 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = third_option
 		ai_chance = {
 			base = 0
 			modifier = { trigger = { wsr_check_debt_normal = yes } add = 100 }
@@ -195,6 +201,8 @@ war_support_battle.3 = {
 			limit = { any_scope_front = { this = scope:front } }
 			save_scope_as = war
 		}
+		debug_log = heroic_defence
+		debug_log_scopes = yes
 	}
 
     option = {
@@ -209,6 +217,7 @@ war_support_battle.3 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = first_option
 		ai_chance = {
 			base = 0
 		}
@@ -230,6 +239,7 @@ war_support_battle.3 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = second_option
 		ai_chance = {
 			base = 50
 		}
@@ -246,6 +256,7 @@ war_support_battle.3 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
+		debug_log = third_option
 		ai_chance = {
 			base = 0
 			modifier = { trigger = { wsr_check_debt_normal = yes } add = 100 }
@@ -265,7 +276,12 @@ war_support_battle.4 = {
 
 	cooldown = { years = 1 }
 
-    event_image = { texture = "gfx/event_pictures/unspecific_military_parade.bk2" }
+    event_image = { video = "gfx/event_pictures/unspecific_military_parade.bk2" }
+
+	immediate = {
+		debug_log = offensive
+		debug_log_scopes = yes
+	}
 
     option = {
         name = war_support_battle.4.a
@@ -291,7 +307,12 @@ war_support_battle.5 = {
 
 	cooldown = { months = WAR_SUPPORT_STALEMATE_COOLDOWN }
 
-    event_image = { texture = "gfx/event_pictures/unspecific_military_parade.bk2" }
+    event_image = { video = "gfx/event_pictures/unspecific_military_parade.bk2" }
+
+	immediate = {
+		debug_log = counteroffensive
+		debug_log_scopes = yes
+	}
 
     option = {
         name = war_support_battle.5.a
@@ -346,8 +367,8 @@ war_support_battle.100 = {
 				}
 
 				root = { 
+					set_variable = { name = test_battle_shame value = wsr_battle_defence_hype_calculator }
 					random = {
-						set_variable = { name = test_battle_shame value = wsr_battle_defence_hype_calculator }
 						chance = wsr_battle_defence_hype_calculator
 						create_character = {
 							culture = scope:soldier_culture
@@ -360,6 +381,23 @@ war_support_battle.100 = {
 						set_local_variable = { name = battle_date value = year }
 						trigger_event = { id = war_support_battle.2 } 
 					}
+				}
+				
+				scope:enemy_country = {
+					random = {
+						chance = wsr_battle_defence_hype_calculator
+						trigger_event = { id = war_support_battle.3 } 
+						create_character = {
+							culture = scope:soldier_culture
+							female = no
+							on_created = {
+								place_character_in_void = 10000
+							}
+							save_scope_as = soldier_character
+						}
+						set_local_variable = { name = battle_date value = year }
+						trigger_event = { id = war_support_battle.2 } 
+					}					
 				}
 			}
 		}
@@ -413,48 +451,6 @@ war_support_battle.101 = {
 					}
 				}
 			}
-		}
-		else_if = {
-			limit = {
-				any_military_formation = {
-					is_army = yes 
-					any_scope_general = { this = scope:defender }
-				}
-			}
-			random_military_formation = {
-				limit = { 
-					is_army = yes 
-					any_scope_general = { this = scope:defender }
-				}
-				random_combat_unit = { culture = { save_scope_as = soldier_culture } }
-			}
-			scope:battle = {
-				defender_side = { save_scope_as = battle_defender }
-				attacker_side = { save_scope_as = battle_attacker }
-
-				if = {
-					limit = { 
-						scope:defender.owner = root
-						exists = scope:state
-					}
-					root = {
-						set_variable = { name = test_battle_defend_hype value = wsr_battle_defence_hype_calculator }
-						random = {
-							chance = wsr_battle_defence_hype_calculator
-							create_character = {
-								culture = scope:soldier_culture
-								female = no
-								on_created = {
-									place_character_in_void = 10000
-								}
-								save_scope_as = soldier_character
-							}
-							set_local_variable = { name = battle_date value = year }
-							trigger_event = { id = war_support_battle.3 } 
-						}
-					}
-				}
-			}			
 		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿LETTER_LITERACY_MAX = 0.7
-LETTER_MAX_CHANCE = 7
+LETTER_MAX_CHANCE = 5
 
 wsr_letter_chance_value = {
 	value = root.literacy_rate

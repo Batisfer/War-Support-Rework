@@ -187,7 +187,6 @@ wsr_bleak_letter_8: "$wsr_letter_receiver$$wsr_letter_intro_bleak$$wsr_letter_sm
 wsr_bleak_letter_9: "$wsr_letter_receiver$$wsr_letter_intro_bleak$$wsr_letter_small_talk_bleak$$wsr_letter_tactics_bleak$$wsr_planes_exists_bleak$$wsr_gas_weapon_exists_bleak$$wsr_letter_small_talk_end_bleak$$wsr_letter_outro_bleak$"
 wsr_bleak_letter_10: "$wsr_letter_receiver$$wsr_letter_intro_bleak$$wsr_letter_small_talk_bleak$$wsr_letter_tactics_bleak$$wsr_machineguns_exists_bleak$$wsr_planes_exists_bleak$$wsr_letter_small_talk_end_bleak$$wsr_letter_outro_bleak$"
 
-wsr_letter_receiver: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_receiver')]\n\n"
 wsr_letter_intro_bleak: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_intro_bleak')]\n\n"
 wsr_letter_tactics_bleak: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_tactics_bleak')]\n\n"
 wsr_letter_small_talk_bleak: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_small_talk_bleak')]\n\n"

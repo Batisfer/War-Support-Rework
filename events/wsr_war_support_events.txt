@@ -7,10 +7,10 @@ check_casualties.1 = {
 
 	immediate = {
 		every_scope_war = {
-			save_scope_as = war
+			save_scope_as = current_struct_war
 			root = { set_local_variable = { name = cas_temp value = prev.total_casualties } }
 			root = { set_local_variable = { name = occ_temp value = enemy_occupation } }
-			root = { set_local_variable = { name = contest_wargoal_temp value = "enemy_contested_wargoals(scope:war)" } }
+			root = { set_local_variable = { name = contest_wargoal_temp value = "enemy_contested_wargoals(scope:current_war)" } }
 			root = { set_local_variable = { name = pc_temp value = mobilized_pop } }
 			root = { set_local_variable = { name = war_temp value = prev } }
 			root = { set_local_variable = { name = country_temp value = this } }
@@ -38,7 +38,7 @@ check_casualties.2 = {
 	immediate = {
 		set_local_variable = { name = our_occupation_across_all_enemies value = 0 }
 		every_scope_war = {
-			save_scope_as = war
+			save_scope_as = current_struct_war
 			diplomatic_play = {
 				if = {
 					limit = {
@@ -50,17 +50,18 @@ check_casualties.2 = {
 					target = {
 						every_in_list = {
 							variable = casualties_country_list
-							limit = { var:war_tag ?= scope:war }
+							limit = { var:war_tag ?= scope:current_struct_war }
 							root = { 
-								change_local_variable = { name = our_occupation_across_all_enemies add = prev.war_support_occupation_across_side } 
+								change_local_variable = { name = our_occupation_across_all_enemies add = prev.var:enemy_occupation_current }
 								set_local_variable = { name = our_wargoal_contest_current value = prev.var:enemy_wargoal_contest_current }
 							}
 						}
 					}
 					every_scope_target_ally = {
+						limit = { country_rank >= rank_value:minor_power }
 						every_in_list = {
 							variable = casualties_country_list
-							limit = { var:war_tag ?= scope:war }
+							limit = { var:war_tag ?= scope:current_struct_war }
 							root = { 
 								change_local_variable = { name = our_occupation_across_all_enemies add = prev.var:enemy_occupation_current }
 							}
@@ -77,19 +78,20 @@ check_casualties.2 = {
 					initiator = {
 						every_in_list = {
 							variable = casualties_country_list
-							limit = { var:war_tag ?= scope:war }
+							limit = { var:war_tag ?= scope:current_struct_war }
 							root = { 
-								change_local_variable = { name = our_occupation_across_all_enemies add = prev.var:enemy_wargoal_contest_current } 
+								change_local_variable = { name = our_occupation_across_all_enemies add = prev.var:enemy_occupation_current } 
 								set_local_variable = { name = our_wargoal_contest_current value = prev.var:enemy_wargoal_contest_current }
 							}
 						}						
 					}
-					every_scope_target_ally = {
+					every_scope_initiator_ally = {
+						limit = { country_rank >= rank_value:minor_power }
 						every_in_list = {
 							variable = casualties_country_list
-							limit = { var:war_tag ?= scope:war }
+							limit = { var:war_tag ?= scope:current_struct_war }
 							root = { 
-								change_local_variable = { name = our_occupation_across_all_enemies add = prev.var:enemy_wargoal_contest_current }
+								change_local_variable = { name = our_occupation_across_all_enemies add = prev.var:enemy_occupation_current }
 							}
 						}
 					}					
@@ -102,9 +104,8 @@ check_casualties.2 = {
 						has_local_variable = our_occupation_across_all_enemies
 					}
 					
-					set_local_variable = { name = war_temp value = prev }
 					manage_wargoal_contest = { 
-						war_tag = local_var:war_temp 
+						war_tag = scope:current_struct_war
 						our_wargoal_contest_current = local_var:our_wargoal_contest_current
 						our_occupation_current = local_var:our_occupation_across_all_enemies
 					} 				
@@ -116,7 +117,6 @@ check_casualties.2 = {
 
 #cleaner event for annexed nations
 check_casualties.3 = {
-	placement = root
 	hidden = yes
 
 	immediate = {
@@ -136,7 +136,13 @@ check_casualties.3 = {
 			}
 			every_in_list = {
 				variable = casualties_country_list
-				limit = { is_character_alive = no }	
+				limit = {
+					OR = {
+						not = { exists = this }
+						not = { exists = var:war_tag }
+						is_character_alive = no  
+					}	
+				}
 				set_local_variable = { name = char_to_process value = this }
 				prev = { remove_list_variable = { name = casualties_country_list target = local_var:char_to_process } }
 			}
@@ -164,5 +170,15 @@ check_casualties.4 = {
 				prev = { remove_list_variable = { name = casualties_country_list target = local_var:char_to_process } }
 			}
 		}
+	}
+}
+
+#debug delete old structs
+check_casualties.5 = {
+	placement = root
+	hidden = yes
+
+	immediate = {
+		remove_war_casualties = yes
 	}
 }

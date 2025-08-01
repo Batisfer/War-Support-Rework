@@ -1,11 +1,45 @@
-﻿WAR_SUPPORT_MINIMAL_ADVANCE = 0.03 #percent of conquer per month to not count it as a stalemate
+﻿WAR_SUPPORT_MINIMAL_ADVANCE = 0.02 #percent of conquer per month to not count it as a stalemate
 
 WAR_SUPPORT_FROM_ALLIES_MAX = -50 #maximum war exhaustion reduction from allies
 WAR_SUPPORT_LACK_OF_PROGRESS_MONTHS = 15 #number of months before stalemate debuff can occur
 WAR_SUPPORT_STALEMATE_COOLDOWN = 3 #number of months after which you get a cooldown to stalemate calculation
 
-WAR_SUPPORT_DURATION_MODIFIER = 0.015 #modifier to a stalemate debuff
-WAR_SUPPORT_CASUALTIES_MODIFIER = 0.1 #modifier to a casualties debuff
+
+#modifier to a stalemate debuff
+WAR_SUPPORT_DURATION_MODIFIER = {
+	value = 0.015
+
+	if = {
+		limit = { root = { is_player = yes } }
+		if = { limit = { has_game_rule = wsr_stalemate_modifier_player_low } multiply = 0.5 }
+		else_if = { limit = { has_game_rule = wsr_stalemate_modifier_player_high } multiply = 1.5 }
+		else_if = { limit = { has_game_rule = wsr_stalemate_modifier_player_very_high } multiply = 2.0 }
+	}
+	else = {
+		if = { limit = { has_game_rule = wsr_stalemate_modifier_ai_low } multiply = 0.5 }
+		else_if = { limit = { has_game_rule = wsr_stalemate_modifier_ai_high } multiply = 1.5 }
+		else_if = { limit = { has_game_rule = wsr_stalemate_modifier_ai_very_high } multiply = 2.0 }
+	}
+}
+
+#modifier to a casualties debuff
+WAR_SUPPORT_CASUALTIES_MODIFIER = {
+	value = 0.05
+
+	if = {
+		limit = { root = { is_player = yes } }
+		if = { limit = { has_game_rule = wsr_casualties_modifier_player_low } multiply = 0.5 }
+		else_if = { limit = { has_game_rule = wsr_casualties_modifier_player_high } multiply = 1.5 }
+		else_if = { limit = { has_game_rule = wsr_casualties_modifier_player_very_high } multiply = 2.0 }
+	}
+	else = {
+		if = { limit = { has_game_rule = wsr_casualties_modifier_ai_low } multiply = 0.5 }
+		else_if = { limit = { has_game_rule = wsr_casualties_modifier_ai_high } multiply = 1.5 }
+		else_if = { limit = { has_game_rule = wsr_casualties_modifier_ai_very_high } multiply = 2.0 }
+	}
+}
+
+
 
 # root = country
 # scope:war = the war we're evaluating war exhaustion for
@@ -47,7 +81,7 @@ war_duration = {
 				multiply = {
 					value = 1
 					subtract = {
-						value = war_support_monthly_occupation
+						value = root.war_support_monthly_occupation
 						divide = WAR_SUPPORT_MINIMAL_ADVANCE
 						min = 0
 						max = 1

@@ -122,7 +122,7 @@ war_support_monthly_occupation = {
 
 war_support_occupation_category = {
 	if = {
-		limit = { local_var:temp_occ <= 0.0 }
+		limit = { local_var:temp_occ < 0.05 }
 		value = 0
 	}
 	else_if = {
@@ -160,9 +160,8 @@ war_support_offensive_event_chance = {
 				var:war_tag ?= scope:war
 				var:country_tag ?= root
 			}
-			value = 1
-			multiply = var:stalemate_duration
-			multiply = 2
+			value = var:stalemate_duration
+			multiply = 4
 			max = 100
 		}
 	}
