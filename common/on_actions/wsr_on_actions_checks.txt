@@ -99,7 +99,7 @@ wsr_on_war_end = {
 
 wsr_on_battle_lost = {
 	trigger = {
-		root.country_rank >= rank_value:minor_power
+		root.country_rank >= rank_value:unrecognized_regional_power
 	}
 	events = {
 		war_support_battle.100
@@ -108,7 +108,7 @@ wsr_on_battle_lost = {
 
 wsr_on_battle_won = {
 	trigger = {
-		root.country_rank >= rank_value:minor_power
+		root.country_rank >= rank_value:unrecognized_regional_power
 	}
 	events = {
 		war_support_battle.101

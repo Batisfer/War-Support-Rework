@@ -58,7 +58,7 @@ check_casualties.2 = {
 						}
 					}
 					every_scope_target_ally = {
-						limit = { country_rank >= rank_value:minor_power }
+						limit = { country_rank >= rank_value:unrecognized_regional_power }
 						every_in_list = {
 							variable = casualties_country_list
 							limit = { var:war_tag ?= scope:current_struct_war }
@@ -86,7 +86,7 @@ check_casualties.2 = {
 						}						
 					}
 					every_scope_initiator_ally = {
-						limit = { country_rank >= rank_value:minor_power }
+						limit = { country_rank >= rank_value:unrecognized_regional_power }
 						every_in_list = {
 							variable = casualties_country_list
 							limit = { var:war_tag ?= scope:current_struct_war }
