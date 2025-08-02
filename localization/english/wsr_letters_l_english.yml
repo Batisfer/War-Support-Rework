@@ -11,7 +11,7 @@ wsr_letter_event.2.a: "[SCOPE.sState('state').GetNameNoFormatting], [SCOPE.GetLo
 
 wsr_letter_event.3.t:"All Quiet on the [SCOPE.sFront('front').GetNameNoFormatting]"
 wsr_letter_event.3.desc:"A personal message from the war expressing realities of life at the front."
-wsr_letter_event.3.f:"[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_bleak')]\n\n- Yours, [SCOPE.sCharacter('soldier_character').GetFirstNameNoFormatting]"
+wsr_letter_event.3.f:"[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_neutral')]\n\n- Yours, [SCOPE.sCharacter('soldier_character').GetFirstNameNoFormatting]"
 wsr_letter_event.3.a: "[SCOPE.sState('state').GetNameNoFormatting], [SCOPE.GetLocalVariable('battle_date').GetValue]"
 
 
@@ -363,7 +363,7 @@ wsr_neutral_outro_3: "Don't be sad. I still believe this will all end soon - and
 wsr_neutral_outro_4: "All in all, I'm holding up. As hard as it gets sometimes, you'd be surprised how quickly people adapt to everything here."
 wsr_neutral_outro_5: "Damn this war - who would've thought I'd end up in a situation like this? But that's life, and there's no changing it."
 wsr_neutral_outro_6: "That's all for now. Keep praying - I truly believe it helps. At the very least, it brings some peace to my soul."
-wsr_neutral_outro_7: "I'll finish this letter and head out on watch - boring work, but I'll be keeping an eye out so no one sneaks into camp. I hope your night's been quieter than mine."
+wsr_neutral_outro_7: "Later today I'll head out on watch - boring work, but I'll be keeping an eye out so no one sneaks into camp. I hope your night's been quieter than mine."
 wsr_neutral_outro_8: "Don't believe everything you hear back home. I have a better view of things here, and I can tell you - it's really not as bad as people say."
 wsr_neutral_outro_9: "I'll admit I'm a bit scared about tomorrow's attack. Got a bad feeling. I'll write again as soon as we get through it - I promise."
 wsr_neutral_outro_10: "That's all I've got for now. I'll write again when I can - stay safe and take care of each other."
@@ -428,20 +428,20 @@ wsr_neutral_gas_weapon_8: "I've seen men hesitate to enter a gassed trench even 
 wsr_neutral_gas_weapon_9: "Some people say gas will end the war faster. Maybe. But if that's the price, it's a high one. Hard to feel proud afterward."
 wsr_neutral_gas_weapon_10: "Gas makes victory feel hollow. We win, sure. But the silence that follows is heavier than any cheer."
 
-wsr_machineguns_bleak_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_machineguns_neutral')]\n\n"
+wsr_machineguns_neutral_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_machineguns_neutral')]\n\n"
 
 wsr_neutral_machineguns_1: "The machine guns have changed everything. Attacks that used to take hours are now over in minutes - mostly in our favor."
 wsr_neutral_machineguns_2: "Sometimes I just listen to the sound of our machine guns. It's mechanical, brutal - but it means we're holding the line."
 wsr_neutral_machineguns_3: "They put me on ammo duty for the machine gun crews. Heavy work, but no one complains. Everyone wants those guns firing."
 wsr_neutral_machineguns_4: "One of the new guys froze the first time he heard a machine gun fire. Can't say I blame him - it still shakes me sometimes."
-wsr_neutral_machineguns_5: "From our trench, we saw the enemy try to rush across open ground. Our guns stopped them cold. It's awful to watch, but it worked."
+wsr_neutral_machineguns_5: "From our trench, we saw the enemy try to rush across open ground. Our machinegun stopped them cold. It's awful to watch, but it worked."
 wsr_neutral_machineguns_6: "Carrying the machine gun feels like holding the future. It's heavy, loud, and ugly - but it speaks louder than any order."
 wsr_neutral_machineguns_7: "We've started digging special positions just for machine guns. They've become the spine of our defenses."
 wsr_neutral_machineguns_8: "When a machine gun jams, you feel the whole trench hold its breath. No one wants to be caught unarmed if they rush us."
 wsr_neutral_machineguns_9: "They trained me to handle the machine gun - I've been assigned as assistant gunner. Just in case. One misfire, and someone has to fix it fast. Delays here are deadly."
 wsr_neutral_machineguns_10: "They gave me a machine gun - a weapon that fires like an entire army used to. I'll be telling stories about this thing in bars for years. No one will believe me unless they've seen it."
 
-wsr_planes_bleak_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_planes_neutral')]\n\n"
+wsr_planes_neutral_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_planes_neutral')]\n\n"
 
 wsr_neutral_planes_1: "A new squadron passed overhead today. It's strange how normal it's become to hear engines rumbling above, even during quiet moments."
 wsr_neutral_planes_2: "One of our pilots managed to drop supplies right on target yesterday. Small victories like that really help keep spirits up."

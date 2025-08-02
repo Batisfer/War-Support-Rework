@@ -52,7 +52,6 @@ war_support_battle.1 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = first_option
 		ai_chance = {
 			base = 0
 		}
@@ -74,7 +73,6 @@ war_support_battle.1 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = second_option
 		ai_chance = {
 			base = 50
 		}
@@ -91,7 +89,6 @@ war_support_battle.1 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = third_option
 		ai_chance = {
 			base = 0
 			modifier = { trigger = { wsr_check_debt_normal = yes } add = 100 }
@@ -144,7 +141,6 @@ war_support_battle.2 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = first_option
 		ai_chance = {
 			base = 0
 		}
@@ -166,7 +162,6 @@ war_support_battle.2 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = second_option
 		ai_chance = {
 			base = 50
 		}
@@ -183,7 +178,6 @@ war_support_battle.2 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = third_option
 		ai_chance = {
 			base = 0
 			modifier = { trigger = { wsr_check_debt_normal = yes } add = 100 }
@@ -222,8 +216,6 @@ war_support_battle.3 = {
 			limit = { any_scope_front = { this = scope:front } }
 			save_scope_as = war
 		}
-		debug_log = heroic_defence
-		debug_log_scopes = yes
 	}
 
     option = {
@@ -238,7 +230,6 @@ war_support_battle.3 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = first_option
 		ai_chance = {
 			base = 0
 		}
@@ -260,7 +251,6 @@ war_support_battle.3 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = second_option
 		ai_chance = {
 			base = 50
 		}
@@ -277,7 +267,6 @@ war_support_battle.3 = {
 		hidden_effect = {
 			scope:soldier_character = { kill_character = yes }
 		}
-		debug_log = third_option
 		ai_chance = {
 			base = 0
 			modifier = { trigger = { wsr_check_debt_normal = yes } add = 100 }
