@@ -10,6 +10,11 @@ wsr_letter_event.2.desc: "Личное послание с войны, пере�
 wsr_letter_event.2.f: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_bleak')]\n\n- Ваш, [SCOPE.sCharacter('soldier_character').GetFirstNameNoFormatting]"
 wsr_letter_event.2.a: "[SCOPE.sState('state').GetNameNoFormatting], [SCOPE.GetLocalVariable('battle_date').GetValue]"
 
+wsr_letter_event.3.t: "[SCOPE.sFront('front').GetNameNoFormatting] - без перемен"
+wsr_letter_event.3.desc: "Личное послание с войны, передающее реалии жизни на фронте."
+wsr_letter_event.3.f: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_bleak')]\n\n- Ваш, [SCOPE.sCharacter('soldier_character').GetFirstNameNoFormatting]"
+wsr_letter_event.3.a: "[SCOPE.sState('state').GetNameNoFormatting], [SCOPE.GetLocalVariable('battle_date').GetValue]"
+
 wsr_receiver_1: "Дорогой отец,"
 wsr_receiver_2: "Моя дорогая мать,"
 wsr_receiver_3: "Моей любимой сестре,"

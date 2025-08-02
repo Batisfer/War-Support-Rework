@@ -44,6 +44,28 @@ wsr_letter_event.2 = {
     }
 }
 
+wsr_letter_event.3 = {
+	type = country_event
+	placement = scope:state
+
+    title = wsr_letter_event.3.t
+    desc = wsr_letter_event.3.desc
+    flavor = wsr_letter_event.3.f
+
+	duration = 2
+
+    gui_window = com_event_window_letter_paper
+
+    option = {
+        name = wsr_letter_event.3.a
+        default_option = yes
+		hidden_effect = {
+			scope:soldier_character = { kill_character = yes }
+			scope:soldier_friend = { kill_character = yes }
+		}
+    }
+}
+
 wsr_letter_event.100 = {
     placement = root
 	hidden = yes
@@ -59,12 +81,6 @@ wsr_letter_event.100 = {
 			}
 			set_local_variable = { name = war_support_temp value = war_support }
 			if = {
-				limit = { 
-					OR = {
-						local_var:war_support_temp <= 20
-						local_var:war_support_temp >= 50
-					}
-				}
 				random_scope_front = {
 					limit = { any_military_formation = { owner = ROOT } }
 					save_scope_as = front
@@ -98,13 +114,20 @@ wsr_letter_event.100 = {
 								set_variable = { name = soldier_friend value = scope:soldier_friend days = 65 }
 								if = {
 									limit = {
-										local_var:war_support_temp <= 20
+										local_var:war_support_temp <= 25
 									}
 									trigger_event = { id = wsr_letter_event.2 }
 								}
+								if = {
+									limit = {
+										local_var:war_support_temp > 25
+										local_var:war_support_temp < 65
+									}
+									trigger_event = { id = wsr_letter_event.3 }
+								}
 								else_if = {
 									limit = {
-										local_var:war_support_temp >= 70
+										local_var:war_support_temp >= 65
 									}
 									trigger_event = { id = wsr_letter_event.1 }								
 								}
