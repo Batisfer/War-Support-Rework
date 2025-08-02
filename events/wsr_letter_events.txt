@@ -55,7 +55,6 @@ wsr_letter_event.100 = {
 					any_military_formation = {
 						owner = ROOT
 					}
-					scope:is_naval_invasion = no
 				}
 			}
 			set_local_variable = { name = war_support_temp value = war_support }
@@ -63,15 +62,16 @@ wsr_letter_event.100 = {
 				limit = { 
 					OR = {
 						local_var:war_support_temp <= 20
-						local_var:war_support_temp >= 70
+						local_var:war_support_temp >= 50
 					}
 				}
 				random_scope_front = {
-					limit = { any_military_formation = { owner = ROOT } scope:is_naval_invasion = no }
+					limit = { any_military_formation = { owner = ROOT } }
 					save_scope_as = front
 					random_scope_state = {
 						save_scope_as = state
 					}
+					root = { set_variable = { name = test_letter_chance value = prev.wsr_letter_chance_value } }
 					random = {
 						chance = prev.wsr_letter_chance_value
 						random_combat_unit = {

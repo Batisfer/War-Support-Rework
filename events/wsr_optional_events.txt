@@ -530,6 +530,12 @@ war_support_good.5 = {
 		name = war_support_good.5.b
 		default_option = yes
 		add_treasury = wsr_money_amount_multiplier_very_small
+		scope:war_from_struct = {
+			add_war_war_support = {
+				target = ROOT
+				value = 10
+			}			
+		}
 		add_loyalists = {
 			value = 0.05
 			pop_type = soldiers

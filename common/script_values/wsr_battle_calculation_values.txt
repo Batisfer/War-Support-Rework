@@ -1,5 +1,6 @@
 ﻿WAR_SUPPORT_BATTLE_EVENT_MODIFIER = 8
-WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE = 25
+WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE = 75
+
 
 # ((defender_army_power_projection / attacker_army_power_projection) * (defender_troop_count / attacker_troop_count) * modifier
 wsr_battle_attack_hype_calculator = {
@@ -24,6 +25,7 @@ wsr_battle_attack_hype_calculator = {
 
     min = 0
     max = WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE
+    value = 100
 }
 
 wsr_battle_defence_hype_calculator = {
@@ -46,4 +48,5 @@ wsr_battle_defence_hype_calculator = {
 
     min = 0
     max = WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE
+    value = 100
 }

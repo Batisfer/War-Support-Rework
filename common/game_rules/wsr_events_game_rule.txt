@@ -17,7 +17,13 @@ wsr_flavor_events_rule = {
 	wsr_flavor_events_disabled = {
 	}
 
-	wsr_flavor_events_enabled = {
+	wsr_flavor_events_enabled_low = {
+	}
+
+	wsr_flavor_events_enabled_medium = {
+	}
+
+	wsr_flavor_events_enabled_high = {
 	}
 }
 
