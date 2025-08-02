@@ -67,14 +67,3 @@ setting_wsr_stalemate_modifier_player_high: "High (x1.5)"
 setting_wsr_stalemate_modifier_player_high_desc: "You lose more [concept_war_support] from lack of [concept_progress_war_exhaustion]."
 setting_wsr_stalemate_modifier_player_very_high: "Very High (x2.0)"
 setting_wsr_stalemate_modifier_player_very_high_desc: "You lose significantly more [concept_war_support] from lack of [concept_progress_war_exhaustion]."
-
-ADD_WAR_WAR_SUPPORT:1 "[Country.GetAdjectiveNoFormatting] [concept_war_support] in [War.GetName] increases by $VALUE|+$"
-ADD_WAR_WAR_SUPPORT_NEG:1 "[Country.GetAdjectiveNoFormatting] [concept_war_support] in [War.GetName] decreases by $VALUE|-$"
-
-
-
-
-
-
-
-

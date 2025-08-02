@@ -67,6 +67,3 @@ setting_wsr_stalemate_modifier_player_high: "Высокое (x1.5)"
 setting_wsr_stalemate_modifier_player_high_desc: "Вы теряете больше [Concept('concept_war_support','поддержки войны')] из-за отсутствия [Concept('concept_progress_war_exhaustion','прогресса')]."
 setting_wsr_stalemate_modifier_player_very_high: "Очень высокое (x2.0)"
 setting_wsr_stalemate_modifier_player_very_high_desc: "Вы теряете значительно больше [Concept('concept_war_support','поддержки войны')] из-за отсутствия [Concept('concept_progress_war_exhaustion','прогресса')]."
-
-ADD_WAR_WAR_SUPPORT: "[Country.GetAdjectiveNoFormatting]аяsss [Concept('concept_war_support', 'воинственность')] на войне «[War.GetName]» повышается на $VALUE|+$."
-ADD_WAR_WAR_SUPPORT_NEG: "[Country.GetAdjectiveNoFormatting]аяsss [Concept('concept_war_support', 'воинственность')] на войне «[War.GetName]» снижается на $VALUE|+$."

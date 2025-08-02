@@ -9,6 +9,11 @@ wsr_letter_event.2.desc:"A personal message from the war expressing realities of
 wsr_letter_event.2.f:"[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_bleak')]\n\n- Yours, [SCOPE.sCharacter('soldier_character').GetFirstNameNoFormatting]"
 wsr_letter_event.2.a: "[SCOPE.sState('state').GetNameNoFormatting], [SCOPE.GetLocalVariable('battle_date').GetValue]"
 
+wsr_letter_event.3.t:"All Quiet on the [SCOPE.sFront('front').GetNameNoFormatting]"
+wsr_letter_event.3.desc:"A personal message from the war expressing realities of life at the front."
+wsr_letter_event.3.f:"[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_bleak')]\n\n- Yours, [SCOPE.sCharacter('soldier_character').GetFirstNameNoFormatting]"
+wsr_letter_event.3.a: "[SCOPE.sState('state').GetNameNoFormatting], [SCOPE.GetLocalVariable('battle_date').GetValue]"
+
 
 
 
@@ -269,7 +274,7 @@ wsr_bleak_small_talk_end_10: "One morning I heard birdsong. It instantly brought
 wsr_gas_weapon_bleak_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_gas_weapon_bleak')]\n\n"
 
 wsr_bleak_gas_weapon_1: "Yesterday, we used gas again. The wind shifted, and we had to put our masks on - it drifted our way. Did God decide to spare them? Or punish us? I don't know anymore."
-wsr_bleak_gas_weapon_2: "They used gas again today. I used to be horrified by this weapon - now I don't care, as long as it all ends soon."
+wsr_bleak_gas_weapon_2: "We used gas again today. I used to be horrified by this weapon - now I don't care, as long as it all ends soon."
 wsr_bleak_gas_weapon_3: "We once flooded their position with gas and moved forward. What we saw was truly horrifying. Damn the man who invented that weapon."
 wsr_bleak_gas_weapon_4: "Gas was used to help us advance. There's no honor in that. I doubt any future stories will speak of the brilliant use of such a weapon."
 wsr_bleak_gas_weapon_5: "I saw gas used for the first time. I wish I hadn't. It does its job - but the result is truly awful."
@@ -304,3 +309,147 @@ wsr_bleak_planes_7: "Honestly, I wouldn't want to be in the enemy's shoes. One t
 wsr_bleak_planes_8: "Times really are changing. Your last letter came in a bundle dropped by our pilots. I was so glad to read it, I felt like hugging whoever was in that plane."
 wsr_bleak_planes_9: "I'm seeing more and more planes go down in flames. The enemy's adapting - they've figured out how to bring them down. People get used to everything, I suppose."
 wsr_bleak_planes_10: "Every time I see a plane in the sky, I wonder what it'd be like to be in it. I think I'd just fly home."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wsr_neutral_letter_1: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_gas_weapon_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_2: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_machineguns_exists_neutral$$wsr_planes_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_3: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_4: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_planes_exists_neutral$$wsr_gas_weapon_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_5: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_gas_weapon_exists_neutral$$wsr_machineguns_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_6: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_planes_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_7: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_machineguns_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_8: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_gas_weapon_exists_neutral$$wsr_machineguns_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_9: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_planes_exists_neutral$$wsr_gas_weapon_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+wsr_neutral_letter_10: "$wsr_letter_receiver$$wsr_letter_intro_neutral$$wsr_letter_small_talk_neutral$$wsr_letter_tactics_neutral$$wsr_machineguns_exists_neutral$$wsr_planes_exists_neutral$$wsr_letter_small_talk_end_neutral$$wsr_letter_outro_neutral$"
+
+wsr_letter_intro_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_intro_neutral')]\n\n"
+wsr_letter_tactics_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_tactics_neutral')]\n\n"
+wsr_letter_small_talk_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_small_talk_neutral')]\n\n"
+wsr_letter_small_talk_end_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_small_talk_end_neutral')]\n\n"
+wsr_letter_outro_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_outro_neutral')]"
+wsr_gas_weapon_exists_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_gas_weapon_exists_neutral')]"
+wsr_machineguns_exists_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_machineguns_exists_neutral')]"
+wsr_planes_exists_neutral: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_planes_exists_neutral')]"
+
+wsr_neutral_intro_1: "I finally managed to get hold of some paper and write you a letter. I hope everything's well on your end."
+wsr_neutral_intro_2: "Sorry for the long silence - I've been very busy, things have been tense on our section of the line."
+wsr_neutral_intro_3: "I was thinking about you the other day. I wondered if you ever imagined I'd end up in a place like this."
+wsr_neutral_intro_4: "I don't know if my letters are reaching you. We rarely get any from home - there've been supply issues."
+wsr_neutral_intro_5: "I'm feeling well. Thank you for your last letter - it moved me more than I expected."
+wsr_neutral_intro_6: "They've sent me to the rear - I thought I'd use the break to write you a letter."
+wsr_neutral_intro_7: "Sorry I haven't written in a while - I just haven't had the heart for it. Sometimes I want to say something, but the words don't come."
+wsr_neutral_intro_8: "I read your last letter. I'm so sorry things turned out that way, and that I wasn't there. I can't help thinking it might have been different if I'd been home."
+wsr_neutral_intro_9: "I've arrived at the front - everything's fine. The people are grim, but I think I'm starting to get along with them."
+wsr_neutral_intro_10: "Looking back, I think I was wrong to say this would all end quickly in my early letters. I'm sorry for that."
+
+wsr_neutral_outro_1: "Expect more letters - I'll write again as soon as I find a moment. I'm really glad we can stay in touch this way."
+wsr_neutral_outro_2: "Say hello to everyone - you can even read them this letter. Tell them I miss them."
+wsr_neutral_outro_3: "Don't be sad. I still believe this will all end soon - and I'll come home. You should believe it too."
+wsr_neutral_outro_4: "All in all, I'm holding up. As hard as it gets sometimes, you'd be surprised how quickly people adapt to everything here."
+wsr_neutral_outro_5: "Damn this war - who would've thought I'd end up in a situation like this? But that's life, and there's no changing it."
+wsr_neutral_outro_6: "That's all for now. Keep praying - I truly believe it helps. At the very least, it brings some peace to my soul."
+wsr_neutral_outro_7: "I'll finish this letter and head out on watch - boring work, but I'll be keeping an eye out so no one sneaks into camp. I hope your night's been quieter than mine."
+wsr_neutral_outro_8: "Don't believe everything you hear back home. I have a better view of things here, and I can tell you - it's really not as bad as people say."
+wsr_neutral_outro_9: "I'll admit I'm a bit scared about tomorrow's attack. Got a bad feeling. I'll write again as soon as we get through it - I promise."
+wsr_neutral_outro_10: "That's all I've got for now. I'll write again when I can - stay safe and take care of each other."
+
+wsr_neutral_tactics_early: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_early_tactics_neutral')]"
+wsr_neutral_tactics_trench: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_letter_trench_tactics_neutral')]"
+
+wsr_neutral_overall_tactics_early_1: "Battle after battle - the whole campaign is starting to feel like routine. Lots of marching, then fighting - and then either more marching forward or back. Needless to say, people are getting tired."
+wsr_neutral_overall_tactics_early_2: "I remember when I first arrived at the front - saw a squad returning from battle. They didn't look anything like the heroic stories. Now I've become one of them, and I understand them completely."
+wsr_neutral_overall_tactics_early_3: "Heard a firsthand story the other day - a whole company broke and ran after their officer was killed. It feels like things like that are becoming less rare."
+wsr_neutral_overall_tactics_early_4: "I keep hearing about discipline slipping in other units. Ours is still solid - our sergeant will tear you apart if you mess up. Maybe that's for the best."
+wsr_neutral_overall_tactics_early_5: "Having been in a few skirmishes now, I can tell you - I don't feel like any sort of hero. These fights bring me no joy. I just want to go home - more and more each day."
+wsr_neutral_overall_tactics_early_6: "You know, people are getting more irritable out here. Small things - damp powder, wet boots - set everyone off more than they should."
+wsr_neutral_overall_tactics_early_7: "In the last fight I narrowly escaped death. A bullet from the enemy flew just over my head and knocked my hat off. Told you - God's still watching over me, one way or another."
+wsr_neutral_overall_tactics_early_8: "Since my last letter, I've tasted both victory and defeat. Our company broke and ran after a lucky enemy volley. I'm not proud of it - but I ran too."
+wsr_neutral_overall_tactics_early_9: "Sometimes it feels like this whole war is just a cycle repeating itself. Same orders, same formations, same tired faces. We just do what we have to and move on."
+wsr_neutral_overall_tactics_early_10: "I've noticed that with every battle we move more precisely - and speak less. Everyone just does their part, no words wasted. It's like even talking takes too much energy now."
+
+wsr_neutral_overall_tactics_trench_1: "People are getting tired of constantly digging new fortifications. Still, some have enough energy left to go beyond what's required - we even have a few trenches with actual resting spaces, can you believe that?"
+wsr_neutral_overall_tactics_trench_2: "I remember when I first arrived - I was shocked by the scale of the defenses. Never imagined soldiers could build something like that. Now I spend my days building the same myself."
+wsr_neutral_overall_tactics_trench_3: "I'm finding less and less satisfaction in this kind of war. Instead of meeting face to face, we bury ourselves like insects. Where's the honor in that?"
+wsr_neutral_overall_tactics_trench_4: "I heard a rumor that there's a disease spreading in the trenches ahead of us - wiping out whole companies. Not sure if it's true or just panic talking."
+wsr_neutral_overall_tactics_trench_5: "Some joke that soldiers today are more like moles - but in our sector, I'd say we're more like fish, considering how bad the ground is here."
+wsr_neutral_overall_tactics_trench_6: "Heard a joke the other day - that armies used to need soldiers, now they need ditch diggers. There's some truth to it. I spend way more time with a shovel than with a rifle."
+wsr_neutral_overall_tactics_trench_7: "Honestly, some of these trenches are impressive. Everything's been thought out - rest areas, firing points, even positions to launch assaults. It's almost an art form. Shame not everyone approaches the work that way."
+wsr_neutral_overall_tactics_trench_8: "A lot of people complain about how we live out here - but personally, I feel safe. During an attack, you forget all about the mud and start feeling grateful you're not standing in an open field."
+wsr_neutral_overall_tactics_trench_9: "We've gotten used to the routine - dig, reinforce, rest, repeat. Some days I wonder if I'll forget how to walk on flat ground once this is over."
+wsr_neutral_overall_tactics_trench_10: "The longer I stay here, the more I realize how strange it is that a trench can start to feel familiar. I can walk through ours with my eyes closed now!"
+
+wsr_neutral_small_talk_1: "[GetPlayer.MakeScope.GetVariable('soldier_friend').GetCharacter.GetFirstNameNoFormatting] - the guy who lived not far from us, I wrote about him before. He's dead. Tell his family I'm sorry. He was a good man - and more importantly, a good soldier."
+wsr_neutral_small_talk_2: "I was thinking the other day - back home, I'd never have met so many people from all across our country. You wouldn't believe the mix we've got here. Good folks, for the most part."
+wsr_neutral_small_talk_3: "[GetPlayer.MakeScope.GetVariable('soldier_friend').GetCharacter.GetFirstNameNoFormatting] couldn't wait to see action when he first arrived. After his first skirmish, his face said it all. I gave him a pat on the shoulder - we've all been there. He's alright, don't worry."
+wsr_neutral_small_talk_4: "We've got a joker here - name's [GetPlayer.MakeScope.GetVariable('soldier_friend').GetCharacter.GetFirstNameNoFormatting]. Always going on about his wild adventures back home. Then came our first fight and he shook like a leaf. Fool. You should've seen him."
+wsr_neutral_small_talk_5: "Getting a proper wash is becoming a rare thing. Some of the guys have given up, but I can't. A soldier should look proper - otherwise what are we? Just a mob of peasants?"
+wsr_neutral_small_talk_6: "Two days ago I saw some soldiers arguing with an officer - shouting, demanding something. I don't know what they expected, but they got punished for it. Asked an older fellow what it was about - he just said it's not uncommon. Odd, isn't it?"
+wsr_neutral_small_talk_7: "We've got one guy who somehow always manages to keep his boots dry. Don't ask me how. He won't tell anyone - says it's a trade secret."
+wsr_neutral_small_talk_8: "They brought us extra rations yesterday. Nothing fancy, but it felt like a holiday. It's funny how quickly your standards change out here."
+wsr_neutral_small_talk_9: "There's a guy in my unit who keeps a journal. Writes every evening, no matter what happened that day. Says he'll publish it after the war. We'll see if he lives that long."
+wsr_neutral_small_talk_10: "Sometimes we argue about the dumbest things - how to make proper soup, what's the best breed of dog. I think it helps keep us sane, in a weird way."
+
+wsr_neutral_small_talk_end_1: "Anyway, I should wrap this up before the light fades. Paper's getting damp too - hate wasting good ink."
+wsr_neutral_small_talk_end_2: "Again, it's strange how quickly all this becomes routine. You start thinking less about the war and more about when you'll get dry socks again."
+wsr_neutral_small_talk_end_3: "I think I'll sit quietly for a while after this. Just let my thoughts settle. That's become a habit lately."
+wsr_neutral_small_talk_end_4: "I'm starting to grow used to the silence between battles. It's not like peace - no - but there's a kind of stillness to it, all the same."
+wsr_neutral_small_talk_end_5: "In any case, I'll try not to dwell on all this too much. Someone here told me the best way to get through is to do what's asked and accept what comes. Not bad advice."
+wsr_neutral_small_talk_end_6: "One guy started humming loud enough for the whole camp to hear. Some found it annoying, but I liked it. Even moments like that can feel comforting here."
+wsr_neutral_small_talk_end_7: "I think I'll stop here, so I have something to write about next time. Gives me something to aim for, in a way."
+wsr_neutral_small_talk_end_8: "The candle's almost out. Probably a good sign to put the pen down and try to catch a few hours of sleep."
+wsr_neutral_small_talk_end_9: "It's quiet right now. I'm not even sure anymore if that's a good thing or not - trying not to think about it. Just enjoying the moment."
+wsr_neutral_small_talk_end_10: "I think that's all for today. Thank you for reading my letters. It comforts me to know someone is waiting for me back home. Not everyone here can say the same."
+
+wsr_gas_weapon_neutral_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_gas_weapon_neutral')]\n\n"
+
+wsr_neutral_gas_weapon_1: "We've started using gas more often lately. It's a terrible thing to witness, but it works. I hope we never end up on the receiving end."
+wsr_neutral_gas_weapon_2: "Gas changed everything. When the wind's on our side, it's like watching the enemy melt away. Still feels wrong, though."
+wsr_neutral_gas_weapon_3: "I once saw what gas did to an enemy trench. It was quiet at first - then came the coughing, and then silence. Efficient, but chilling."
+wsr_neutral_gas_weapon_4: "We carry masks with us at all times now. There's always the risk the wind turns. I've heard horror stories of it blowing back on our own."
+wsr_neutral_gas_weapon_5: "During one of our advances, they used gas to soften the enemy. We moved in right after. Barely a shot fired. Still, the scene was hard to stomach."
+wsr_neutral_gas_weapon_6: "Gas does end fights faster, I'll give it that. But no one here enjoys it. Even the veterans avoid talking about it."
+wsr_neutral_gas_weapon_7: "There was a gas alert two nights ago. False alarm, thankfully. But that five-minute panic was enough to shake us all up."
+wsr_neutral_gas_weapon_8: "I've seen men hesitate to enter a gassed trench even with masks on. The fear lingers - once you see what it does, you don't forget."
+wsr_neutral_gas_weapon_9: "Some people say gas will end the war faster. Maybe. But if that's the price, it's a high one. Hard to feel proud afterward."
+wsr_neutral_gas_weapon_10: "Gas makes victory feel hollow. We win, sure. But the silence that follows is heavier than any cheer."
+
+wsr_machineguns_bleak_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_machineguns_neutral')]\n\n"
+
+wsr_neutral_machineguns_1: "The machine guns have changed everything. Attacks that used to take hours are now over in minutes - mostly in our favor."
+wsr_neutral_machineguns_2: "Sometimes I just listen to the sound of our machine guns. It's mechanical, brutal - but it means we're holding the line."
+wsr_neutral_machineguns_3: "They put me on ammo duty for the machine gun crews. Heavy work, but no one complains. Everyone wants those guns firing."
+wsr_neutral_machineguns_4: "One of the new guys froze the first time he heard a machine gun fire. Can't say I blame him - it still shakes me sometimes."
+wsr_neutral_machineguns_5: "From our trench, we saw the enemy try to rush across open ground. Our guns stopped them cold. It's awful to watch, but it worked."
+wsr_neutral_machineguns_6: "Carrying the machine gun feels like holding the future. It's heavy, loud, and ugly - but it speaks louder than any order."
+wsr_neutral_machineguns_7: "We've started digging special positions just for machine guns. They've become the spine of our defenses."
+wsr_neutral_machineguns_8: "When a machine gun jams, you feel the whole trench hold its breath. No one wants to be caught unarmed if they rush us."
+wsr_neutral_machineguns_9: "They trained me to handle the machine gun - I've been assigned as assistant gunner. Just in case. One misfire, and someone has to fix it fast. Delays here are deadly."
+wsr_neutral_machineguns_10: "They gave me a machine gun - a weapon that fires like an entire army used to. I'll be telling stories about this thing in bars for years. No one will believe me unless they've seen it."
+
+wsr_planes_bleak_exist: "[SCOPE.GetRootScope.GetCountry.GetCustom('wsr_planes_neutral')]\n\n"
+
+wsr_neutral_planes_1: "A new squadron passed overhead today. It's strange how normal it's become to hear engines rumbling above, even during quiet moments."
+wsr_neutral_planes_2: "One of our pilots managed to drop supplies right on target yesterday. Small victories like that really help keep spirits up."
+wsr_neutral_planes_3: "We heard the roar of engines in the sky this morning. Everyone looked up-some with hope, some with concern."
+wsr_neutral_planes_4: "A letter arrived with the supply drop from above. It's hard to believe, but sometimes these machines feel like lifelines."
+wsr_neutral_planes_5: "One of the guys said he wants to be a pilot after the war. After seeing them fly like birds, I can't blame him."
+wsr_neutral_planes_6: "We saw one of ours flying low over the lines, dodging ground fire. When he pulled up and vanished into the clouds, the whole trench cheered - it felt like we all won something."
+wsr_neutral_planes_7: "You know, some say the planes make too much noise. I say it's a reminder that someone's watching over us. Right?"
+wsr_neutral_planes_8: "A pilot dropped a note attached to the supplies - just said 'Hold fast'. It lifted everyone's mood more than the food did."
+wsr_neutral_planes_9: "It's odd how planes make you feel both safe and exposed. Safe when they're ours, exposed when we wonder who else is watching."
+wsr_neutral_planes_10: "Officers say tomorrow we'll have more support from the air. That kind of news, even if uncertain, helps us get through the day."
