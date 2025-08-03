@@ -25,7 +25,6 @@ wsr_battle_attack_hype_calculator = {
 
     min = 0
     max = WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE
-    value = 100
 }
 
 wsr_battle_defence_hype_calculator = {
@@ -48,5 +47,4 @@ wsr_battle_defence_hype_calculator = {
 
     min = 0
     max = WAR_SUPPORT_MAX_BATTLE_EVENT_CHANCE
-    value = 100
 }
