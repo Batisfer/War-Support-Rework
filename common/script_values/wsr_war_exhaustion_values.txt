@@ -45,6 +45,117 @@ WAR_SUPPORT_CASUALTIES_MODIFIER = {
 # scope:war = the war we're evaluating war exhaustion for
 # No randomness is allowed in this script value
 
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_NONE = 0
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_NONE_WS_HIT = 0
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW = 0.1
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW_WS_HIT = 1
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE = 0.25
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE_WS_HIT = 10
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL = 0.5
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL_WS_HIT = 15
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH = 0.75
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH_WS_HIT = 25
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME = 0.9
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME_WS_HIT = 40
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_TOTAL = 1
+WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_TOTAL_WS_HIT = 100
+
+war_support_lerp_occupation = {
+    if = {
+        limit = { scope:temp_enemy_occupation <= WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_NONE }
+        value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_NONE_WS_HIT
+    }
+    else_if = {
+        limit = { scope:temp_enemy_occupation <= WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW }
+        value = scope:temp_enemy_occupation
+        multiply = {
+            value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW_WS_HIT
+            divide = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW
+        }
+    }
+    else_if = {
+        limit = { scope:temp_enemy_occupation <= WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE }
+        value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW_WS_HIT
+        add = {
+            value = scope:temp_enemy_occupation
+            subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW
+            multiply = {
+                value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE_WS_HIT
+                subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW_WS_HIT
+                divide = {
+                    value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE
+                    subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW
+                }
+            }
+        }
+    }
+    else_if = {
+        limit = { scope:temp_enemy_occupation <= WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL }
+        value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE_WS_HIT
+        add = {
+            value = scope:temp_enemy_occupation
+            subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE
+            multiply = {
+                value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL_WS_HIT
+                subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE_WS_HIT
+                divide = {
+                    value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL
+                    subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE
+                }
+            }
+        }
+    }
+    else_if = {
+        limit = { scope:temp_enemy_occupation <= WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH }
+        value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL_WS_HIT
+        add = {
+            value = scope:temp_enemy_occupation
+            subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL
+            multiply = {
+                value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH_WS_HIT
+                subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL_WS_HIT
+                divide = {
+                    value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH
+                    subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL
+                }
+            }
+        }
+    }
+    else_if = {
+        limit = { scope:temp_enemy_occupation <= WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME }
+        value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH_WS_HIT
+        add = {
+            value = scope:temp_enemy_occupation
+            subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH
+            multiply = {
+                value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME_WS_HIT
+                subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH_WS_HIT
+                divide = {
+                    value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME
+                    subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH
+                }
+            }
+        }
+    }
+    else_if = {
+        limit = { scope:temp_enemy_occupation <= WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_TOTAL }
+        value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME_WS_HIT
+        add = {
+            value = scope:temp_enemy_occupation
+            subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME
+            multiply = {
+                value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_TOTAL_WS_HIT
+                subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME_WS_HIT
+                divide = {
+                    value = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_TOTAL
+                    subtract = WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME
+                }
+            }
+        }
+    }
+}
+
+
 
 war_support = {
 	value = "has_war_support(root)"
@@ -191,6 +302,19 @@ war_exhaustion_from_casualties = {
 	}
 }
 
+war_exhaustion_from_capital_lost = {
+	if = {
+		limit = { has_game_rule = wsr_casualties_capital_lost_enabled }
+		root = {
+			if = {
+				limit = {
+					capital.controller != capital.owner
+				}
+				add = 3
+			}
+		}
+	}
+}
 
 war_exhaustion_from_enemy_contested_wargoals = {
 	add = define:NWar|WAR_EXHAUSTION_CONTESTED_ENEMY_WARGOALS
@@ -223,6 +347,8 @@ war_exhaustion = {
 	save_temporary_value_as = temp_enemy_occupation
 	value = war_exhaustion_from_casualties
 	save_temporary_value_as = temp_war_exhaustion_from_casualties
+	value = war_exhaustion_from_capital_lost
+	save_temporary_value_as = temp_war_exhaustion_from_capital_lost
 	value = war_exhaustion_from_enemy_contested_wargoals
 	save_temporary_value_as = temp_war_exhaustion_from_enemy_contested_wargoals
 	value = "scope:war.war_exhaustion_from_acceptance_of_dead(root)"
@@ -248,68 +374,15 @@ war_exhaustion = {
 	}
 
 	add = {
-		if = {
-			limit = {
-				scope:temp_enemy_occupation <= 0.0
-			}
-			add = {
-				add = 0.0
-				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_NONE"
-			}
-		}
-		else_if = {
-			limit = {
-				scope:temp_enemy_occupation < 0.1
-			}
-			add = {
-				add = 0.1
-				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_LOW"
-			}
-		}
-		else_if = {
-			limit = {
-				scope:temp_enemy_occupation < 0.25
-			}
-			add = {
-				add = 1
-				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_MODERATE"
-			}
-		}
-		else_if = {
-			limit = {
-				scope:temp_enemy_occupation < 0.5
-			}
-			add = {
-				add = 15.0
-				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_SUBSTANTIAL"
-			}
-		}
-		else_if = {
-			limit = {
-				scope:temp_enemy_occupation < 0.75
-			}
-			add = {
-				add = 25.0
-				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_HIGH"
-			}
-		}
-		else_if = {
-			limit = {
-				scope:temp_enemy_occupation < 0.9
-			}
-			add = {
-				add = 35.0
-				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_EXTREME"
-			}
-		}
-		else_if = {
-			limit = {
-				scope:temp_enemy_occupation <= 1.0
-			}
-			add = {
-				add = 50.0
-				desc = "WAR_EXHAUSTION_FROM_ENEMY_OCCUPATION_TOTAL"
-			}
+		value = war_support_lerp_occupation
+		desc = "WAR_EXHAUSTION_OCCUPATION"
+	}
+
+	if = {
+		limit = { scope:temp_war_exhaustion_from_capital_lost >= 0.01 }
+		add = {
+			add = scope:temp_war_exhaustion_from_capital_lost
+			desc = "WAR_EXHAUSTION_CAPITAL_LOST"
 		}
 	}
 
@@ -323,7 +396,6 @@ war_exhaustion = {
 
 	if = {
 		limit = { scope:temp_war_exhaustion_from_casualties >= 0.01 }
-		
 		add = {
 			add = scope:temp_war_exhaustion_from_casualties
 			desc = "WAR_EXHAUSTION_FROM_CASUALTIES_NEW"

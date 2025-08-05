@@ -27,6 +27,14 @@ wsr_flavor_events_rule = {
 	}
 }
 
+
+wsr_casualties_capital_lost_rule = {
+	default = wsr_casualties_capital_lost_enabled
+
+	wsr_casualties_capital_lost_disabled = { }
+	wsr_casualties_capital_lost_enabled = { }
+}
+
 wsr_casualties_modifier_player_rule = {
 	default = wsr_casualties_modifier_player_default
 

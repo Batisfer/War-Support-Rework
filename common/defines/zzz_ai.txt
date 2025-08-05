@@ -1,5 +1,5 @@
 ﻿NAI = {
-	FRONT_MIN_ORGANIZATION_TO_ATTACK = 0.2						# vanilla 0.8 | As a fraction of formation's max organization
+	FRONT_MIN_ORGANIZATION_TO_ATTACK = 0					# vanilla 0.8 | As a fraction of formation's max organization
 
 	AI_PEACE_AGREEMENT_WAR_SUPPORT_FACTOR = -2	# Each point of war support affects peace acceptance by this amoun
 	AI_MONTHS_OF_REDUCED_PEACE_DESIRE = 12 #vanilla 10
