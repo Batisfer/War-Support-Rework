@@ -2,7 +2,7 @@
   "name" : "War Support Rework",
 	"id" : "",
   "version" : "1.0",
-  "supported_game_version" : "1.9.*",
+  "supported_game_version" : "1.10.*",
   "short_description" : "Complete rework of war support and war exhaustion system",
   "tags" : [],
   "relationships" : [
